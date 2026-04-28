@@ -1,0 +1,111 @@
+.wardrobe-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    align-items: center;
+    margin-bottom: $space-lg;
+
+    &__search {
+        width: 100%;
+
+        @include respond-above($bp-sm) {
+            width: 260px;
+        }
+    }
+
+    &__chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-xs;
+        flex: 1;
+    }
+}
+
+.wardrobe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: $space-md;
+
+    @include respond-above($bp-md) {
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    }
+
+    @include respond-above($bp-lg) {
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    }
+}
+
+// Wardrobe Item Card
+.wardrobe-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform $transition-base, box-shadow $transition-base;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: $shadow-lg;
+    }
+
+    &__img-wrap {
+        position: relative;
+        aspect-ratio: 3 / 4;
+        background: $gray-100;
+        overflow: hidden;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__img-fallback {
+        @include flex-center;
+        width: 100%;
+        height: 100%;
+        font-size: 3rem;
+        background: $gray-100;
+    }
+
+    &__color-dot {
+        position: absolute;
+        bottom: $space-sm;
+        left: $space-sm;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    &__type-badge {
+        position: absolute !important;
+        top: $space-sm;
+        left: $space-sm;
+        font-size: 10px !important;
+        height: 20px !important;
+    }
+
+    &__laundry-badge {
+        position: absolute !important;
+        top: $space-sm;
+        right: $space-sm;
+        font-size: 10px !important;
+        height: 20px !important;
+    }
+
+    &__content {
+        padding: $space-sm $space-md !important;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__actions {
+        padding: 0 $space-sm $space-sm !important;
+        border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+}

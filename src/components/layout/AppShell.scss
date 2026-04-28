@@ -1,0 +1,129 @@
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.app-bar {
+    background-color: var(--mui-palette-background-paper, #fff) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 1300;
+
+    &__toolbar {
+        gap: $space-xs;
+    }
+
+    [data-theme="dark"] & {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.drawer-paper {
+    width: 240px;
+    border-right: 1px solid rgba(0, 0, 0, 0.06) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+
+    [data-theme="dark"] & {
+        border-right-color: rgba(255, 255, 255, 0.06) !important;
+    }
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-top: 72px; // offset for AppBar
+
+    &__brand {
+        padding: $space-lg $space-lg $space-md;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__nav {
+        flex: 1;
+        padding: $space-sm;
+
+        &-item {
+            border-radius: $radius-md !important;
+            margin-bottom: $space-xs;
+            transition: background $transition-base !important;
+            color: inherit;
+
+            &--active {
+                background-color: rgba(92, 107, 192, 0.12) !important;
+                color: $primary !important;
+
+                .MuiListItemIcon-root {
+                    color: $primary !important;
+                }
+
+                .MuiListItemText-primary {
+                    font-weight: 600 !important;
+                }
+            }
+        }
+
+        &-icon {
+            min-width: 40px !important;
+        }
+    }
+
+    &__footer {
+        padding: $space-sm;
+    }
+
+    &__user {
+        display: flex;
+        align-items: center;
+        padding: $space-md $space-sm;
+        min-width: 0;
+    }
+}
+
+.app-shell__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    &--with-sidebar {
+        margin-left: 240px;
+    }
+}
+
+.app-shell__content {
+    flex: 1;
+    padding: $space-lg;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+
+    @include respond-below($bp-sm) {
+        padding: $space-md;
+    }
+
+    @include respond-above($bp-lg) {
+        padding: $space-xl;
+    }
+}
+
+.bottom-nav {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1200;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+    height: 64px;
+
+    .MuiBottomNavigationAction-root {
+        min-width: 60px;
+        padding: $space-sm 0;
+
+        &.Mui-selected {
+            color: $primary;
+        }
+    }
+}

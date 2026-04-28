@@ -1,0 +1,60 @@
+.laundry-stats-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: $space-lg;
+}
+
+.laundry-controls {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    margin-bottom: $space-md;
+
+    &__search {
+        @include respond-above($bp-sm) {
+            width: 280px;
+        }
+    }
+
+    &__filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-sm;
+        align-items: flex-start;
+    }
+}
+
+.laundry-list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+}
+
+.laundry-item {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: box-shadow $transition-base;
+
+    &--urgent {
+        border-color: rgba(239, 83, 80, 0.3);
+        background: rgba(239, 83, 80, 0.03) !important;
+    }
+
+    &:hover {
+        box-shadow: $shadow-md;
+    }
+
+    &__content {
+        display: flex !important;
+        align-items: center;
+        gap: $space-md;
+        flex-wrap: wrap;
+        padding: $space-md !important;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+        min-width: 0;
+        flex: 1;
+    }
+}

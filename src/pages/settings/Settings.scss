@@ -1,0 +1,10 @@
+.settings-layout {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    max-width: 600px;
+}
+
+.settings-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}

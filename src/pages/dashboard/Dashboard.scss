@@ -1,0 +1,263 @@
+.dashboard {
+    &__greeting {
+        margin-bottom: $space-lg;
+    }
+
+    &__grid {
+        display: flex;
+        flex-direction: column;
+        gap: $space-lg;
+
+        &--desktop {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: $space-lg;
+        min-width: 0;
+
+        .dashboard__grid--desktop & {
+            flex: 1.5;
+        }
+    }
+
+    &__side {
+        display: flex;
+        flex-direction: column;
+        gap: $space-lg;
+
+        .dashboard__grid--desktop & {
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+        }
+    }
+}
+
+// Context Card
+.context-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-lg;
+
+        @include respond-above($bp-sm) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    &__weather {
+        display: flex;
+        align-items: center;
+        gap: $space-md;
+    }
+
+    &__occasion {
+        min-width: 0;
+    }
+}
+
+.weather-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.occasion-chip {
+    cursor: pointer;
+    transition: all $transition-fast !important;
+
+    &:hover {
+        transform: translateY(-1px);
+    }
+}
+
+// Outfit Card
+.outfit-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: $space-md;
+    }
+
+    &__header {
+        @include flex-between;
+        flex-wrap: wrap;
+        gap: $space-sm;
+    }
+}
+
+.outfit-items {
+    display: flex;
+    gap: $space-md;
+    flex-wrap: wrap;
+}
+
+.outfit-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-xs;
+    cursor: pointer;
+    border-radius: $radius-md;
+    padding: $space-sm;
+    transition: background $transition-fast;
+    width: 100px;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.04);
+    }
+
+    &__img {
+        width: 80px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: $radius-sm;
+        background: $gray-100;
+    }
+
+    &__fallback {
+        width: 80px;
+        height: 90px;
+        @include flex-center;
+        font-size: 2rem;
+        background: $gray-100;
+        border-radius: $radius-sm;
+    }
+
+    &__label {
+        max-width: 90px;
+        text-align: center;
+    }
+
+    &__type {
+        font-size: 10px !important;
+    }
+}
+
+.outfit-reason {
+    background: rgba(92, 107, 192, 0.06);
+    border-left: 3px solid $primary;
+    padding: $space-sm $space-md;
+    border-radius: 0 $radius-sm $radius-sm 0;
+    font-style: italic;
+}
+
+// Try-On Card
+.tryon-card {
+    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%) !important;
+    color: white;
+
+    &__content {
+        @include flex-between;
+        min-height: 140px;
+    }
+
+    &__text {
+        .MuiTypography-root {
+            color: white;
+        }
+
+        .MuiTypography-body2 {
+            opacity: 0.8;
+        }
+    }
+}
+
+.tryon-avatar {
+    @include flex-center;
+    font-size: 4rem;
+    opacity: 0.6;
+}
+
+// Stats Card
+.stats-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.stat-item {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+    padding: $space-md $space-sm;
+    border-radius: $radius-md;
+    background: rgba(0, 0, 0, 0.02);
+    transition: background $transition-fast;
+
+    &:hover {
+        background: rgba(92, 107, 192, 0.06);
+    }
+
+    &__emoji {
+        font-size: 1.5rem;
+        margin-bottom: $space-xs;
+    }
+
+    &__value {
+        line-height: 1.1 !important;
+    }
+}
+
+// For You Card
+.for-you-card {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.for-you-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-md;
+
+    @include respond-above($bp-md) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.for-you-item {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+    cursor: pointer;
+    transition: transform $transition-fast;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &__img-wrap {
+        position: relative;
+        border-radius: $radius-md;
+        overflow: hidden;
+        background: $gray-100;
+        aspect-ratio: 3 / 4;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__badge {
+        position: absolute !important;
+        top: $space-xs;
+        right: $space-xs;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,42 @@
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: $space-lg;
+    background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 50%, #fff0eb 100%);
+
+    [data-mui-color-scheme="dark"] & {
+        background: linear-gradient(135deg, #0a0c18 0%, #0f1120 50%, #1a1210 100%);
+    }
+
+    &__brand {
+        text-align: center;
+        margin-bottom: $space-xl;
+    }
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
+    &__content {
+        padding: $space-xl !important;
+
+        @include respond-below($bp-sm) {
+            padding: $space-lg !important;
+        }
+    }
+}
+
+.auth-link {
+    color: $primary;
+    font-weight: 600;
+
+    &:hover {
+        color: $primary-dark;
+        text-decoration: underline;
+    }
+}
