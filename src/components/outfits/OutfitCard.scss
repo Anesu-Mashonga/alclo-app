@@ -1,0 +1,291 @@
+.outfit-card {
+  @include card-surface(null);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  transition: opacity $duration-base $ease-standard;
+
+  &--busy {
+    opacity: 0.55;
+  }
+
+  &__preview {
+    padding: 12px 12px 0;
+
+    .outfit-preview {
+      width: 100%;
+    }
+
+    // Without an accessories column the flat lay would grow taller than its neighbours.
+    .outfit-preview--flatlay:not(:has(.outfit-preview__side)) .outfit-preview__main {
+      flex: 0 1 70%;
+      margin-inline: auto;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+    padding: 12px 16px 16px;
+  }
+
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-1;
+  }
+
+  &__titles {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  &__title {
+    @include line-clamp(2);
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: $c-text;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px $space-1;
+    min-width: 0;
+    margin-top: -4px;
+  }
+
+  &__occasion.MuiChip-root {
+    flex-shrink: 0;
+  }
+
+  &__meta-text {
+    @include tabular;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__tools {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2px;
+    margin: -6px -8px 0 0;
+  }
+
+  &__icon-btn.MuiIconButton-root {
+    width: 40px;
+    height: 40px;
+    color: $c-text-secondary;
+
+    @include down(md) {
+      width: 44px;
+      height: 44px;
+    }
+
+    @include hover-capable {
+      &:hover {
+        color: $c-text;
+      }
+    }
+  }
+
+  &__icon-btn--on.MuiIconButton-root,
+  &__icon-btn--on.MuiIconButton-root:hover {
+    color: $c-primary;
+  }
+
+  &__fav-icon {
+    display: inline-flex;
+  }
+
+  &__reasons,
+  &__flags {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__reasons li {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-1;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__reason-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 16px;
+    color: $c-text-secondary;
+  }
+
+  &__flag {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-1;
+    padding: 6px 10px;
+    border-radius: $radius-sm;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+
+    &--warning {
+      background-color: $c-warning-soft;
+      color: $c-on-warning-soft;
+    }
+
+    &--error {
+      background-color: $c-error-soft;
+      color: $c-on-error-soft;
+    }
+
+    &--muted {
+      padding-inline: 0;
+      color: $c-text-secondary;
+    }
+  }
+
+  &__flag-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 16px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+    padding: 0 16px 16px;
+
+    > * {
+      flex: 1 1 auto;
+    }
+  }
+
+  // Phones: photo beside the text, actions across the bottom.
+  @include down(sm) {
+    display: grid;
+    grid-template-columns: minmax(0, 132px) minmax(0, 1fr);
+    grid-template-areas:
+      'preview body'
+      'actions actions';
+
+    &__preview {
+      grid-area: preview;
+      padding: 12px 0 12px 12px;
+    }
+
+    &__body {
+      grid-area: body;
+      gap: 8px;
+      padding: 12px 12px 12px 14px;
+    }
+
+    &__actions {
+      grid-area: actions;
+      padding: 0 12px 12px;
+
+      .MuiButton-root {
+        min-height: 44px;
+      }
+    }
+
+    &__reasons li:nth-child(n + 3) {
+      display: none;
+    }
+  }
+
+  &__menu-danger.MuiMenuItem-root {
+    color: $c-error;
+  }
+
+  // Skeleton (same geometry as the flat lay preview).
+  &--skeleton {
+    pointer-events: none;
+  }
+
+  &__sk-flatlay {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__sk-main {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__sk-side {
+    display: flex;
+    flex: 0 0 30%;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .MuiSkeleton-root {
+    flex-shrink: 0;
+    border-radius: $radius-sm;
+  }
+
+  &__sk--upper.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+  }
+
+  &__sk--bottom.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1.25;
+  }
+
+  &__sk--feet.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 0.9;
+  }
+
+  &__sk--square.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__sk--title.MuiSkeleton-root {
+    width: 64%;
+    height: 20px;
+  }
+
+  &__sk--meta.MuiSkeleton-root {
+    width: 48%;
+    height: 24px;
+    border-radius: $radius-pill;
+  }
+
+  &__sk--line.MuiSkeleton-root {
+    width: 86%;
+    height: 14px;
+  }
+
+  &__sk--button.MuiSkeleton-root {
+    height: 32px;
+    border-radius: $radius-control;
+  }
+}

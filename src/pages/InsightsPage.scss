@@ -1,0 +1,98 @@
+.insights-page {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    @include up(md) {
+      gap: $space-3;
+    }
+  }
+
+  // 12-column dashboard grid. Single column on phones, paired cards on tablets,
+  // asymmetric pairs (8/4, 6/6, 7/5) on desktop.
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-2;
+
+    @include up(md) {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: $space-3;
+    }
+  }
+
+  &__area {
+    @include up(md) {
+      &--weekly,
+      &--forgotten,
+      &--gaps,
+      &--full {
+        grid-column: span 12;
+      }
+
+      &--most-worn,
+      &--category,
+      &--occasions,
+      &--colors {
+        grid-column: span 6;
+      }
+
+      // Tablet: keep colour mix beside occasions, forgotten pieces get the full row.
+      &--colors {
+        order: 1;
+      }
+
+      &--forgotten {
+        order: 2;
+      }
+
+      &--gaps {
+        order: 3;
+      }
+    }
+
+    @include up(lg) {
+      &--weekly {
+        grid-column: span 8;
+      }
+
+      &--most-worn {
+        grid-column: span 4;
+      }
+
+      &--category,
+      &--occasions {
+        grid-column: span 6;
+      }
+
+      &--forgotten {
+        grid-column: span 7;
+        order: 0;
+      }
+
+      &--colors {
+        grid-column: span 5;
+        order: 0;
+      }
+
+      &--gaps {
+        order: 0;
+      }
+    }
+  }
+
+  &__view-toggle.MuiButton-root {
+    min-height: 36px;
+    color: $c-text-secondary;
+    white-space: nowrap;
+
+    @include down(md) {
+      min-height: 44px;
+    }
+  }
+
+  &__range {
+    flex-shrink: 0;
+  }
+}

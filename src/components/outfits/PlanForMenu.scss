@@ -1,0 +1,35 @@
+.plan-for-menu {
+  .MuiPaper-root {
+    min-width: 240px;
+    max-width: calc(100vw - 32px);
+  }
+
+  &__heading.MuiListSubheader-root {
+    padding: 6px 12px 4px;
+    background: none;
+    color: $c-text-secondary;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  &__item.MuiMenuItem-root {
+    align-items: flex-start;
+
+    .MuiListItemIcon-root {
+      margin-top: 2px;
+      color: $c-text-secondary;
+    }
+
+    .MuiListItemText-root {
+      margin: 0;
+    }
+  }
+
+  &__detail {
+    @include truncate;
+    max-width: 220px;
+    color: $c-text-secondary;
+    font-size: 0.8125rem;
+  }
+}

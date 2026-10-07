@@ -1,0 +1,184 @@
+.outfit-board {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  min-width: 0;
+
+  &__core {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2 12px;
+
+    @include up(sm) {
+      gap: $space-2;
+    }
+
+    &--3 {
+      @include up(sm) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    &--4 {
+      @include up(sm) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  }
+
+  // Three tiles on a phone: the last one spans the row, with its details beside the photo.
+  &__core--3 > .slot-tile:last-child {
+    @include down(sm) {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+
+      .slot-tile__media {
+        flex: 0 0 calc(50% - 6px);
+      }
+
+      .slot-tile__meta {
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  &__accessories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: $space-2;
+    border-top: 1px solid $c-divider;
+  }
+
+  &__accessories-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+    min-height: 32px;
+  }
+
+  &__accessories-title {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__accessories-lock.MuiButton-root {
+    color: $c-text-secondary;
+
+    &[aria-pressed='true'] {
+      background-color: $c-accent-soft;
+      color: $c-on-accent-soft;
+    }
+  }
+
+  &__accessory-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    @include up(sm) {
+      grid-template-columns: repeat(auto-fill, 128px);
+      gap: $space-2;
+    }
+  }
+
+  // Flat lay view.
+  &--flatlay {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-3;
+
+    @include up(sm) {
+      grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  &__flatlay-well {
+    padding: 12px;
+    border-radius: $radius-surface;
+    background-color: $c-sunken;
+  }
+
+  &__legend {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li + li {
+      border-top: 1px solid $c-divider;
+    }
+  }
+
+  &__legend-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 10px 8px;
+    border: 0;
+    border-radius: $radius-control;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color $duration-fast $ease-standard;
+    @include focus-ring(-2px);
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-hover;
+      }
+    }
+  }
+
+  &__legend-text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__legend-slot {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__legend-lock {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: $c-on-accent-soft;
+    font-weight: 600;
+
+    .MuiSvgIcon-root {
+      font-size: 14px;
+    }
+  }
+
+  &__legend-name {
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: $c-text;
+  }
+
+  &__legend-chevron.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 20px;
+    color: $c-text-secondary;
+  }
+}

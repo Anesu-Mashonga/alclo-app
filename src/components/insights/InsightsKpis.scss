@@ -1,0 +1,54 @@
+.insights-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  transition: opacity $duration-base $ease-standard;
+
+  @include up(md) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: $space-2;
+  }
+
+  &--busy {
+    opacity: 0.5;
+  }
+
+  &__usage {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  // Slim meter: the unfilled track is a lighter step of the same rose ramp.
+  &__meter {
+    display: block;
+    height: 4px;
+    overflow: hidden;
+    border-radius: $radius-pill;
+    background-color: $c-accent-soft;
+  }
+
+  &__meter-fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background-color: $c-primary;
+    transform: scaleX(var(--usage, 0));
+    transform-origin: left center;
+    transition: transform $duration-slow $ease-standard;
+  }
+}
+
+// Let tile labels wrap on narrow screens instead of truncating.
+.insights-kpis .stat-tile__label {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+// Phones: two tiles per row leave no room for the icon, so the label gets the full width.
+@include down(sm) {
+  .insights-kpis .stat-tile__icon {
+    display: none;
+  }
+}

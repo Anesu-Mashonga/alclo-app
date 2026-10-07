@@ -1,0 +1,100 @@
+// Design tokens for SCSS. Variables only: this file is injected into every .scss file,
+// so it must never output CSS.
+//
+// Colours are aliases of the CSS variables MUI generates from src/theme/palette.js.
+// They resolve at runtime, so light and dark mode work without any SCSS branching.
+
+// Breakpoints (match MUI defaults so up(md) here equals theme.breakpoints.up('md')).
+$breakpoints: (
+  xs: 0,
+  sm: 600px,
+  md: 900px,
+  lg: 1200px,
+  xl: 1536px,
+);
+
+// Spacing: 8px grid.
+$space-1: 8px;
+$space-2: 16px;
+$space-3: 24px;
+$space-4: 32px;
+$space-5: 40px;
+$space-6: 48px;
+
+// Page gutters (xs / md / lg) and content width.
+$gutter-xs: 16px;
+$gutter-md: 24px;
+$gutter-lg: 32px;
+$content-max-width: 1280px;
+
+// Radius rule: controls 10, surfaces 16, photo wells 12, pills fully round.
+$radius-sm: 8px;
+$radius-control: 10px;
+$radius-well: 12px;
+$radius-surface: 16px;
+$radius-pill: 999px;
+
+// Motion.
+$duration-fast: 120ms;
+$duration-page: 160ms;
+$duration-base: 200ms;
+$duration-slow: 280ms;
+$ease-standard: cubic-bezier(0.2, 0, 0, 1);
+$ease-exit: cubic-bezier(0.3, 0, 1, 1);
+
+// Layers. MUI components use MUI's own zIndex scale (appBar 1100, drawer 1200, modal 1300).
+$z-sticky: 10;
+$z-bulk-bar: 20;
+$z-app-bar: var(--mui-zIndex-appBar, 1100);
+
+// App shell.
+$sidebar-width: 248px;
+$rail-width: 76px;
+$topbar-height: 64px;
+$mobile-topbar-height: 56px;
+$bottom-nav-height: 64px;
+$safe-bottom: env(safe-area-inset-bottom, 0px);
+
+// Type.
+$font-family: 'Geist Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+// Colours (theme-aware CSS variables).
+$c-bg: var(--mui-palette-background-default);
+$c-paper: var(--mui-palette-background-paper);
+$c-raised: var(--mui-palette-alclo-surfaceRaised);
+$c-sunken: var(--mui-palette-alclo-surfaceSunken);
+$c-divider: var(--mui-palette-divider);
+$c-border-strong: var(--mui-palette-alclo-borderStrong);
+$c-hover: var(--mui-palette-alclo-hover);
+$c-backdrop: var(--mui-palette-alclo-backdrop);
+
+$c-text: var(--mui-palette-text-primary);
+$c-text-secondary: var(--mui-palette-text-secondary);
+$c-text-disabled: var(--mui-palette-text-disabled);
+
+$c-primary: var(--mui-palette-primary-main);
+$c-primary-dark: var(--mui-palette-primary-dark);
+$c-on-primary: var(--mui-palette-primary-contrastText);
+$c-accent-soft: var(--mui-palette-alclo-accentSoft);
+$c-on-accent-soft: var(--mui-palette-alclo-onAccentSoft);
+
+$c-ink: var(--mui-palette-alclo-ink);
+$c-on-ink: var(--mui-palette-alclo-onInk);
+$c-photo-well: var(--mui-palette-alclo-photoWell);
+
+$c-success: var(--mui-palette-success-main);
+$c-success-soft: var(--mui-palette-success-soft);
+$c-on-success-soft: var(--mui-palette-success-onSoft);
+$c-warning: var(--mui-palette-warning-main);
+$c-warning-soft: var(--mui-palette-warning-soft);
+$c-on-warning-soft: var(--mui-palette-warning-onSoft);
+$c-error: var(--mui-palette-error-main);
+$c-error-soft: var(--mui-palette-error-soft);
+$c-on-error-soft: var(--mui-palette-error-onSoft);
+$c-info: var(--mui-palette-info-main);
+$c-info-soft: var(--mui-palette-info-soft);
+$c-on-info-soft: var(--mui-palette-info-onSoft);
+
+// Shadows (overlays only; surfaces stay flat with a 1px border).
+$shadow-raised: var(--mui-palette-alclo-shadowRaised);
+$shadow-overlay: var(--mui-palette-alclo-shadowOverlay);

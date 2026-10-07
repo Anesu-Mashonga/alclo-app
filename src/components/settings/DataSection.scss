@@ -1,0 +1,28 @@
+.data-section {
+  &__storage {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    width: 100%;
+
+    @include up(sm) {
+      align-items: flex-end;
+      width: 220px;
+    }
+  }
+
+  &__storage-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__meter.MuiLinearProgress-root {
+    width: 100%;
+    background-color: $c-sunken;
+
+    .MuiLinearProgress-bar {
+      background-color: $c-text-secondary;
+    }
+  }
+}

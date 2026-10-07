@@ -1,0 +1,39 @@
+.hamper-info.MuiPaper-root {
+  width: min(340px, calc(100vw - 32px));
+  margin-top: $space-1;
+  padding: $space-2 20px 20px;
+}
+
+.hamper-info {
+  &__title {
+    margin: 0 0 $space-1;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: $c-text;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    margin: 0;
+    padding-left: 18px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+
+    li::marker {
+      color: $c-text-disabled;
+    }
+  }
+
+  &__footer {
+    margin: 12px 0 0;
+    padding-top: 12px;
+    border-top: 1px solid $c-divider;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+  }
+}

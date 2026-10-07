@@ -1,0 +1,70 @@
+.occasion-toggle {
+  @include scrollbar-hidden;
+  display: inline-flex;
+  max-width: 100%;
+  gap: 2px;
+  padding: 3px;
+  overflow-x: auto;
+  background-color: $c-sunken;
+  border-radius: $radius-pill;
+
+  &--full {
+    display: flex;
+    width: 100%;
+
+    .occasion-toggle__option {
+      flex: 1 1 0;
+    }
+  }
+
+  &__option {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 36px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: $radius-pill;
+    background: none;
+    color: $c-text-secondary;
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color $duration-fast $ease-standard;
+    @include focus-ring(-2px);
+
+    @include hover-capable {
+      &:hover {
+        color: $c-text;
+      }
+    }
+
+    &--selected {
+      color: $c-text;
+    }
+  }
+
+  &--sm &__option {
+    min-height: 30px;
+    padding: 0 12px;
+    font-size: 0.8125rem;
+  }
+
+  &__thumb {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: $c-raised;
+    border-radius: $radius-pill;
+    box-shadow: $shadow-raised;
+  }
+
+  &__label {
+    position: relative;
+    z-index: 1;
+  }
+}

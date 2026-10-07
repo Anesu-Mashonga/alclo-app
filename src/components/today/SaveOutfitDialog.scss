@@ -1,0 +1,14 @@
+.save-outfit {
+  &__content.MuiDialogContent-root {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: $space-2;
+  }
+
+  &__preview.outfit-preview {
+    padding: 12px;
+    border-radius: $radius-well;
+    background-color: $c-sunken;
+  }
+}

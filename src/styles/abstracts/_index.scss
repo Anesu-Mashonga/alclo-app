@@ -1,0 +1,4 @@
+// Injected into every .scss file by vite.config.js (`@use "@/styles/abstracts" as *;`).
+// Only variables, functions and mixins live here. Nothing in this folder may output CSS.
+@forward 'tokens';
+@forward 'mixins';

@@ -1,0 +1,84 @@
+.laundry-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: $space-2;
+
+  @include up(md) {
+    flex-direction: row;
+    align-items: center;
+    gap: $space-2;
+    margin-bottom: $space-3;
+  }
+
+  &__search.MuiTextField-root {
+    width: 100%;
+
+    @include up(md) {
+      flex: 0 0 280px;
+      width: 280px;
+    }
+
+    // Native search inputs draw their own clear button; ours is the IconButton.
+    input::-webkit-search-cancel-button {
+      appearance: none;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    min-width: 0;
+
+    @include up(md) {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__chips {
+    @include scrollbar-hidden;
+    display: flex;
+    flex: 1 1 auto;
+    gap: $space-1;
+    min-width: 0;
+    overflow-x: auto;
+    // Room for the focus ring of the first and last chip inside the scroller.
+    margin: -4px;
+    padding: 4px;
+  }
+
+  // Same trigger as the Wardrobe sort menu: neutral outlined button, secondary prefix, chevron.
+  &__sort.MuiButton-root {
+    flex-shrink: 0;
+    min-height: 44px;
+    margin-left: auto;
+  }
+
+  &__sort-prefix {
+    font-weight: 500;
+    color: $c-text-secondary;
+  }
+
+  // Phones: icon only (the tooltip and the hidden label carry the name), so the chips get the room.
+  &__sort-label {
+    @include down(sm) {
+      @include visually-hidden;
+    }
+  }
+
+  &__sort.MuiButton-root {
+    @include down(sm) {
+      min-width: 40px;
+      padding: 0 11px;
+
+      .MuiButton-startIcon {
+        margin: 0;
+      }
+
+      .MuiButton-endIcon {
+        display: none;
+      }
+    }
+  }
+}

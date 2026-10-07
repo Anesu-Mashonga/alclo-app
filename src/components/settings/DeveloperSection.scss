@@ -1,0 +1,46 @@
+.developer-section {
+  &__toggle.MuiToggleButtonGroup-root {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    max-width: 440px;
+
+    .MuiToggleButton-root {
+      min-height: 38px;
+      padding-inline: 8px;
+    }
+  }
+
+  &__toggle--narrow.MuiToggleButtonGroup-root {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 330px;
+  }
+
+  &__skeleton-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-block: 20px;
+
+    &:first-child {
+      padding-top: 4px;
+    }
+
+    & + & {
+      border-top: 1px solid $c-divider;
+    }
+  }
+
+  &__skeleton-control.MuiSkeleton-root {
+    max-width: 100%;
+    border-radius: $radius-pill;
+  }
+
+  &__tip {
+    margin: 0;
+    padding-inline: 4px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+  }
+}

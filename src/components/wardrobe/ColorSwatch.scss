@@ -1,0 +1,18 @@
+.color-swatch {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--color-swatch-size, 14px);
+  height: var(--color-swatch-size, 14px);
+  overflow: hidden;
+  border-radius: 50%;
+  // Hairline so white, cream and black swatches stay visible on either surface.
+  box-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.16);
+
+  @include dark-scheme {
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.24);
+  }
+
+  &--multi > span {
+    flex: 1 1 0;
+  }
+}

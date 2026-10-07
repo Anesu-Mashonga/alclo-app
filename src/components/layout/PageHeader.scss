@@ -1,0 +1,56 @@
+.page-header {
+  margin-bottom: $space-3;
+
+  @include up(md) {
+    margin-bottom: $space-4;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-2 $space-3;
+  }
+
+  &__titles {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.625rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: $c-text;
+
+    @include up(md) {
+      font-size: 2rem;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__subtitle {
+    max-width: 64ch;
+    margin: 6px 0 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  &__extra {
+    margin-top: $space-3;
+  }
+}

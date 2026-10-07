@@ -1,0 +1,21 @@
+.sort-menu {
+  .MuiMenu-paper {
+    min-width: 200px;
+  }
+
+  &__button.MuiButton-root {
+    min-height: 44px;
+  }
+
+  &__prefix {
+    margin-right: 4px;
+    font-weight: 500;
+    color: $c-text-secondary;
+  }
+
+  &__icon-button.MuiIconButton-root {
+    width: 44px;
+    height: 44px;
+    border: 1px solid $c-border-strong;
+  }
+}

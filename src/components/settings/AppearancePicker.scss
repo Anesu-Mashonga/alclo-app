@@ -1,0 +1,141 @@
+// Segmented control laid out as three preview tiles.
+.appearance-picker.MuiToggleButtonGroup-root {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 520px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.appearance-picker__option.MuiToggleButton-root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  min-height: 0;
+  padding: 8px 8px 10px;
+  color: $c-text-secondary;
+  background-color: $c-paper;
+  border: 1px solid $c-divider;
+  border-radius: $radius-well;
+  box-shadow: none;
+  transition:
+    border-color $duration-fast $ease-standard,
+    box-shadow $duration-fast $ease-standard,
+    color $duration-fast $ease-standard;
+
+  @include hover-capable {
+    &:hover {
+      color: $c-text;
+      background-color: $c-paper;
+      border-color: $c-border-strong;
+    }
+  }
+
+  &.Mui-selected,
+  &.Mui-selected:hover {
+    color: $c-text;
+    background-color: $c-paper;
+    border-color: transparent;
+    box-shadow: 0 0 0 2px $c-primary;
+  }
+}
+
+.appearance-picker__tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: $radius-sm;
+}
+
+.appearance-picker__split {
+  position: absolute;
+  inset: 0;
+
+  .appearance-preview + .appearance-preview {
+    clip-path: inset(0 0 0 50%);
+  }
+}
+
+.appearance-picker__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 6px;
+  padding-inline: 2px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.appearance-picker__hint {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: $c-text-secondary;
+}
+
+// The miniature itself. Every colour comes from the scoped theme variables.
+.appearance-preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  background-color: $c-bg;
+  border: 1px solid $c-divider;
+  border-radius: $radius-sm;
+
+  &__rail {
+    flex: 0 0 22%;
+    background-color: $c-paper;
+    border-right: 1px solid $c-divider;
+    border-radius: 7px 0 0 7px;
+  }
+
+  &__main {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 7%;
+    min-width: 0;
+    padding: 9% 9%;
+  }
+
+  &__line {
+    display: block;
+    height: 5px;
+    border-radius: $radius-pill;
+
+    &--title {
+      width: 52%;
+      background-color: $c-text;
+      opacity: 0.85;
+    }
+
+    &--accent {
+      width: 30%;
+      background-color: $c-primary;
+    }
+  }
+
+  &__card {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3px;
+    padding: 4px;
+    background-color: $c-paper;
+    border: 1px solid $c-divider;
+    border-radius: 4px;
+  }
+
+  &__well {
+    display: block;
+    aspect-ratio: 1;
+    background-color: $c-photo-well;
+    border-radius: 2px;
+  }
+}

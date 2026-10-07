@@ -1,0 +1,86 @@
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-2;
+  border: 1px solid $c-border-strong;
+  border-radius: $radius-surface;
+  background-color: $c-paper;
+  cursor: pointer;
+  transition:
+    border-color $duration-fast $ease-standard,
+    box-shadow $duration-fast $ease-standard,
+    transform $duration-fast $ease-standard;
+
+  @include up(sm) {
+    padding: 20px $space-3 $space-3;
+  }
+
+  @include hover-capable {
+    &:hover {
+      border-color: $c-text-secondary;
+    }
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:active {
+      transform: none;
+    }
+  }
+
+  &--checked,
+  &--checked:hover {
+    border-color: $c-primary;
+    box-shadow: inset 0 0 0 1px $c-primary;
+  }
+
+  // The radio is the focus target; draw the ring around the whole card instead.
+  &:has(.Mui-focusVisible) {
+    outline: 2px solid $c-primary;
+    outline-offset: 2px;
+  }
+
+  &__radio.MuiRadio-root {
+    flex-shrink: 0;
+    margin: -8px -10px 0 0;
+
+    &.Mui-focusVisible {
+      outline: none;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-2;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__title {
+    color: $c-text;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  &__description {
+    color: $c-text-secondary;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  &__media {
+    display: block;
+  }
+}

@@ -1,0 +1,56 @@
+.wardrobe-skeleton {
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: $space-2;
+
+    @include down(sm) {
+      gap: 12px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: $space-1 $space-1 12px;
+    border: 1px solid $c-divider;
+    border-radius: $radius-surface;
+    background-color: $c-paper;
+  }
+
+  &__photo.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin-bottom: 10px;
+    border-radius: $radius-well;
+  }
+
+  &--list {
+    border: 1px solid $c-divider;
+    border-radius: $radius-surface;
+    background-color: $c-paper;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    padding: 12px $space-2;
+    border-top: 1px solid $c-divider;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  &__lines {
+    flex: 1 1 auto;
+  }
+
+  &__pill.MuiSkeleton-root {
+    border-radius: $radius-pill;
+  }
+}

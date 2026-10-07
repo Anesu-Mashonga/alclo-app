@@ -1,0 +1,221 @@
+.slot-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+
+  &__media {
+    position: relative;
+  }
+
+  &__open {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: $radius-well;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    @include focus-ring;
+    @include pressable(0.985);
+  }
+
+  &--accessory &__open {
+    border-radius: $radius-control;
+  }
+
+  &__photo {
+    display: block;
+  }
+
+  // The well itself: subtle inner border so white garments still read against a light page.
+  &__photo .item-thumb {
+    box-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.04);
+  }
+
+  &--accessory &__photo .item-thumb {
+    border-radius: $radius-control;
+  }
+
+  &--locked &__photo .item-thumb {
+    box-shadow: inset 0 0 0 2px $c-primary;
+  }
+
+  &__lock-marker {
+    position: absolute;
+    top: $space-1;
+    left: $space-1;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 24px;
+    padding: 0 8px 0 6px;
+    border-radius: $radius-pill;
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+    font-size: 0.75rem;
+    font-weight: 600;
+    pointer-events: none;
+
+    .MuiSvgIcon-root {
+      font-size: 14px;
+    }
+  }
+
+  &--accessory &__lock-marker {
+    top: 6px;
+    left: 6px;
+    width: 24px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  &--accessory &__lock-text {
+    @include visually-hidden;
+  }
+
+  &__actions {
+    position: absolute;
+    top: $space-1;
+    right: $space-1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &--accessory &__actions {
+    top: 4px;
+    right: 4px;
+  }
+
+  &__action.MuiIconButton-root {
+    width: 36px;
+    height: 36px;
+    border: 1px solid $c-divider;
+    background-color: $c-raised;
+    color: $c-text;
+    box-shadow: $shadow-raised;
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-raised;
+        border-color: $c-border-strong;
+      }
+    }
+
+    @media (hover: none) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__action--on.MuiIconButton-root {
+    border-color: transparent;
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-accent-soft;
+        border-color: transparent;
+      }
+    }
+  }
+
+  // Reveal actions on hover or keyboard focus; touch screens always show them.
+  @include hover-capable {
+    &__actions {
+      opacity: 0;
+      transform: translateY(-2px);
+      transition:
+        opacity $duration-fast $ease-standard,
+        transform $duration-fast $ease-standard;
+    }
+
+    &:hover &__actions,
+    &:focus-within &__actions {
+      opacity: 1;
+      transform: none;
+    }
+
+    // A locked tile keeps its unlock control in view.
+    &--locked &__actions {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    padding-inline: 2px;
+  }
+
+  &__slot {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__line {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-1;
+    min-width: 0;
+  }
+
+  &__name {
+    @include line-clamp(2);
+    min-width: 0;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: $c-text;
+
+    &--muted {
+      color: $c-text-secondary;
+      font-weight: 400;
+    }
+  }
+
+  &--accessory &__name {
+    font-size: 0.8125rem;
+  }
+
+  &__colors {
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  &--accessory &__colors {
+    display: none;
+  }
+
+  &__placeholder {
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: $space-1;
+    aspect-ratio: 4 / 5;
+    padding: $space-2;
+    border: 1px dashed $c-border-strong;
+    border-radius: $radius-well;
+    color: $c-text-secondary;
+    font-size: 0.875rem;
+    text-align: center;
+
+    .MuiSvgIcon-root {
+      font-size: 28px;
+    }
+  }
+
+  &--accessory &__placeholder {
+    aspect-ratio: 1 / 1;
+  }
+}

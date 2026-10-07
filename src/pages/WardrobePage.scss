@@ -1,0 +1,89 @@
+.wardrobe-page {
+  // Leave room for the floating bulk bar so the last row stays reachable.
+  &--selecting {
+    padding-bottom: 96px;
+
+    @include down(sm) {
+      padding-bottom: 168px;
+    }
+  }
+
+  &__subtitle-skeleton.MuiSkeleton-root {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &__select.MuiButton-root {
+    min-height: 40px;
+  }
+
+  &__select--on.MuiButton-root {
+    border-color: $c-primary;
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+  }
+
+  &__view.MuiToggleButtonGroup-root .MuiToggleButton-root {
+    min-width: 40px;
+    min-height: 32px;
+  }
+
+  &__results {
+    padding-top: $space-3;
+    transition: opacity $duration-base $ease-standard;
+
+    &--stale {
+      opacity: 0.6;
+    }
+  }
+
+  &__select-hint {
+    margin: 0 0 $space-2;
+    font-size: 0.875rem;
+    color: $c-text-secondary;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+    gap: $space-2;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include down(sm) {
+      gap: 12px;
+    }
+  }
+
+  &__cell {
+    min-width: 0;
+  }
+
+  &__list {
+    overflow: hidden;
+    background-color: $c-paper;
+    border: 1px solid $c-divider;
+    border-radius: $radius-surface;
+
+    // The header row is hidden on phones; rows start right at the top there.
+    > [role='list'] {
+      @include up(md) {
+        border-top: 1px solid $c-divider;
+      }
+    }
+  }
+
+  // Rows sit in animation wrappers, so the divider lives on the wrapper.
+  &__row {
+    background-color: $c-paper;
+
+    .item-row {
+      border-top: 0;
+    }
+
+    & + & {
+      border-top: 1px solid $c-divider;
+    }
+  }
+}

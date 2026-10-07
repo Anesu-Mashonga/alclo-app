@@ -1,0 +1,171 @@
+.item-row {
+  --item-row-columns: minmax(0, 1fr) auto 44px;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--item-row-columns);
+  align-items: center;
+  column-gap: $space-2;
+  min-height: 64px;
+  padding: 12px $space-1 12px $space-2;
+  border-top: 1px solid $c-divider;
+  transition: background-color $duration-fast $ease-standard;
+
+  @include up(md) {
+    --item-row-columns: minmax(0, 1fr) 104px 128px 64px 112px 44px;
+  }
+
+  &--selecting {
+    --item-row-columns: 24px minmax(0, 1fr) auto;
+    user-select: none;
+
+    @include up(md) {
+      --item-row-columns: 24px minmax(0, 1fr) 104px 128px 64px 112px;
+    }
+  }
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  @include hover-capable {
+    &:not(.item-row--header):hover {
+      background-color: $c-hover;
+    }
+  }
+
+  &:has(.item-row__main:focus-visible) {
+    outline: 2px solid $c-primary;
+    outline-offset: -2px;
+    border-radius: $radius-control;
+  }
+
+  &--selected,
+  &--selected:hover {
+    background-color: $c-accent-soft;
+  }
+
+  &--header {
+    display: none;
+    min-height: 40px;
+    padding-block: 0;
+
+    @include up(md) {
+      display: grid;
+    }
+  }
+
+  &__head {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $c-text-secondary;
+  }
+
+  &__check {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    border: 2px solid $c-border-strong;
+    color: $c-on-primary;
+    font-size: 16px;
+    pointer-events: none;
+
+    &--on {
+      border-color: $c-primary;
+      background-color: $c-primary;
+    }
+  }
+
+  &__piece {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__main {
+    all: unset;
+    display: block;
+    min-width: 0;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__name {
+    display: block;
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__type {
+    @include truncate;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__inline-wears {
+    @include up(md) {
+      display: none;
+    }
+  }
+
+  &__colors,
+  &__wears,
+  &__last {
+    display: none;
+
+    @include up(md) {
+      display: block;
+    }
+  }
+
+  &__wears,
+  &__last {
+    font-size: 0.875rem;
+    color: $c-text-secondary;
+    @include tabular;
+  }
+
+  &__wears:not(.item-row__head) {
+    color: $c-text;
+  }
+
+  &__status {
+    display: flex;
+  }
+
+  // Phones only flag pieces that need attention, like the grid cards, so names get the room.
+  &__status--clean {
+    @include down(md) {
+      display: none;
+    }
+  }
+
+  &__menu {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

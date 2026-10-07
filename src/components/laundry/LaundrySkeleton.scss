@@ -1,0 +1,151 @@
+// Mirrors .laundry-page__board and LaundryColumn / LaundryItemRow dimensions.
+.laundry-skeleton {
+  &__board {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    align-items: start;
+    gap: $space-2;
+
+    @include up(lg) {
+      gap: $space-3;
+    }
+  }
+
+  &__side {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    @include up(lg) {
+      gap: $space-3;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 44px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid $c-divider;
+  }
+
+  &__card {
+    @include card-surface(null);
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-2;
+    padding: $space-2 $space-2 0;
+
+    @include up(md) {
+      padding: 20px $space-3 0;
+    }
+  }
+
+  &__titles {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__select {
+    height: 40px;
+    margin: 12px $space-1 0;
+    border-bottom: 1px solid $c-divider;
+
+    @include up(md) {
+      margin: 12px 12px 0;
+    }
+  }
+
+  &__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px $space-1 $space-1;
+
+    @include up(md) {
+      padding: 6px 12px 12px;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    padding: 4px $space-1 4px 13px;
+  }
+
+  &__check {
+    flex-shrink: 0;
+    margin-right: 9px;
+  }
+
+  &__thumb {
+    flex-shrink: 0;
+  }
+
+  &__text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__action {
+    flex-shrink: 0;
+  }
+}
+
+// Mirrors .laundry-toolbar so the board does not jump when the data lands.
+.laundry-skeleton {
+  &__toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: $space-2;
+
+    @include up(md) {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-2;
+      margin-bottom: $space-3;
+    }
+  }
+
+  &__search {
+    width: 100%;
+
+    @include up(md) {
+      flex: 0 0 280px;
+      width: 280px;
+    }
+  }
+
+  &__filters {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: $space-1;
+    min-width: 0;
+    // The chips are pills like the real ones.
+    .laundry-skeleton__chip {
+      flex-shrink: 0;
+      border-radius: $radius-pill;
+    }
+  }
+
+  &__sort {
+    flex: 0 0 40px;
+    margin-left: auto;
+
+    @include up(sm) {
+      flex-basis: 160px;
+    }
+  }
+}

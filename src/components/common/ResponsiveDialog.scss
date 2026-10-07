@@ -1,0 +1,5 @@
+// Full-screen sheets respect the device safe areas (notch and home indicator).
+.responsive-dialog--sheet .MuiDialog-paper {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

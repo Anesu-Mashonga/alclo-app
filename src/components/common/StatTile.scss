@@ -1,0 +1,77 @@
+.stat-tile {
+  @include card-surface($space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+
+  @include up(md) {
+    padding: 20px;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+  }
+
+  &__label {
+    @include truncate;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $c-text-secondary;
+  }
+
+  &__icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 18px;
+    background-color: $c-sunken;
+    color: $c-text-secondary;
+  }
+
+  &__value {
+    @include tabular;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: $c-text;
+  }
+
+  &__hint {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &--primary &__icon {
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+  }
+
+  &--success &__icon {
+    background-color: $c-success-soft;
+    color: $c-on-success-soft;
+  }
+
+  &--warning &__icon {
+    background-color: $c-warning-soft;
+    color: $c-on-warning-soft;
+  }
+
+  &--error &__icon {
+    background-color: $c-error-soft;
+    color: $c-on-error-soft;
+  }
+
+  &--info &__icon {
+    background-color: $c-info-soft;
+    color: $c-on-info-soft;
+  }
+}

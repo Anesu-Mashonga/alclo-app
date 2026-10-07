@@ -1,0 +1,99 @@
+// Global base styles. Imported once in src/main.jsx.
+//
+// Cascade layers (see src/styles/README.md):
+//   base     element defaults below; lowest priority
+//   mui      every MUI style (StyledEngineProvider enableCssLayer)
+//   unlayered component and page SCSS; always wins over both
+// The order is declared in index.html before any stylesheet loads; repeating it here is harmless.
+@layer base, mui;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    // Matches the theme before React mounts, so there is no flash of the wrong colour.
+    background-color: var(--mui-palette-background-default, #f4f4f5);
+    color: var(--mui-palette-text-primary, #18181b);
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html[data-dark] {
+    background-color: var(--mui-palette-background-default, #111113);
+    color: var(--mui-palette-text-primary, #f4f4f5);
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: $font-family;
+    font-size: 1rem;
+    line-height: 1.55;
+    background-color: inherit;
+    color: inherit;
+  }
+
+  #root {
+    min-height: 100vh;
+    min-height: 100dvh;
+    isolation: isolate;
+  }
+
+  img,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  ::selection {
+    background-color: var(--mui-palette-alclo-accentSoft, #fbe8ef);
+    color: var(--mui-palette-alclo-onAccentSoft, #8e1844);
+  }
+
+  // Thin, quiet scrollbars.
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--mui-palette-alclo-borderStrong, #d4d4d8) transparent;
+  }
+
+  // Keyboard focus ring for plain elements. MUI components draw their own (theme.focusVisible).
+  :where(:focus-visible) {
+    outline: 2px solid var(--mui-palette-primary-main, #b21f57);
+    outline-offset: 2px;
+  }
+
+  // Programmatic focus targets (page h1, main landmark, menus) never show a ring.
+  :where([tabindex='-1'], [role='menu'], [role='listbox'], main):focus-visible,
+  :where([tabindex='-1'], main):focus {
+    outline: none;
+  }
+
+  // Reduced motion: important declarations in the lowest layer still beat everything else.
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+// Utilities (unlayered on purpose so they always apply).
+.u-visually-hidden {
+  @include visually-hidden;
+}
+
+.u-tabular {
+  @include tabular;
+}

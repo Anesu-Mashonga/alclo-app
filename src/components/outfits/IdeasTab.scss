@@ -1,0 +1,137 @@
+.ideas-tab {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px $space-2;
+  }
+
+  &__occasions {
+    min-width: 0;
+  }
+
+  &__more-wrap {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  &__context {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    min-height: 24px;
+    margin: $space-2 0 $space-3;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__context-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 20px;
+    color: $c-info;
+  }
+
+  &__context-skeleton.MuiSkeleton-root {
+    width: min(320px, 80%);
+    height: 22px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-2;
+
+    @include up(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include up(md) {
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: $space-3;
+    }
+  }
+
+  &__cell {
+    display: flex;
+    min-width: 0;
+
+    > .outfit-card {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__hint {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+    padding: $space-3;
+    border: 1px dashed $c-border-strong;
+    border-radius: $radius-surface;
+  }
+
+  &__hint-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $c-sunken;
+    color: $c-text-secondary;
+    font-size: 20px;
+  }
+
+  &__hint-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__hint-text {
+    max-width: 36ch;
+    margin: -4px 0 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+  }
+
+  &__state {
+    @include card-surface(null);
+    max-width: none;
+  }
+
+  // The bottom button is the phone version of the toolbar one.
+  &__footer {
+    display: none;
+  }
+
+  @include down(sm) {
+    &__more-wrap {
+      display: none;
+    }
+
+    &__occasions {
+      width: 100%;
+    }
+
+    &__footer {
+      display: flex;
+      margin-top: $space-2;
+    }
+
+    &__more-bottom.MuiButton-root {
+      width: 100%;
+      min-height: 44px;
+    }
+  }
+}

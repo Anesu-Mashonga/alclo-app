@@ -1,0 +1,280 @@
+.today-outfit {
+  @include card-surface(20px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+
+  @include up(md) {
+    padding: $space-3;
+  }
+
+  &--empty {
+    padding-block: $space-4;
+  }
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px $space-2;
+  }
+
+  &__titles {
+    display: flex;
+    flex: 1 1 260px;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: $c-text;
+
+    @include up(md) {
+      font-size: 1.375rem;
+    }
+  }
+
+  &__context {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__context-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 18px;
+    color: $c-info;
+  }
+
+  &__view.MuiToggleButtonGroup-root {
+    flex-shrink: 0;
+  }
+
+  // Weather preview banner.
+  &__preview {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+    padding: 6px 6px 6px 12px;
+    border: 1px solid $c-divider;
+    border-radius: $radius-control;
+    background-color: $c-info-soft;
+    color: $c-on-info-soft;
+
+    .MuiButton-root {
+      color: $c-on-info-soft;
+    }
+  }
+
+  &__preview-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    .MuiSvgIcon-root {
+      font-size: 18px;
+    }
+  }
+
+  // Why this outfit: a quiet inline list.
+  &__reasons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin: -4px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__reason {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+
+    .MuiSvgIcon-root {
+      flex-shrink: 0;
+      font-size: 16px;
+      color: $c-success;
+    }
+  }
+
+  &__alert.MuiAlert-root {
+    align-items: center;
+    background-color: $c-warning-soft;
+    color: $c-on-warning-soft;
+
+    .MuiAlert-icon {
+      color: $c-warning;
+    }
+
+    .MuiAlert-action {
+      padding-top: 0;
+      margin-right: -4px;
+    }
+
+    .MuiAlert-action .MuiButton-root {
+      white-space: nowrap;
+    }
+  }
+
+  &__warnings {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  &__board {
+    transition: opacity $duration-base $ease-standard;
+
+    &--busy {
+      opacity: 0.72;
+    }
+  }
+
+  &__note {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-1;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: $radius-control;
+    background-color: $c-warning-soft;
+    color: $c-on-warning-soft;
+    font-size: 0.875rem;
+    line-height: 1.45;
+
+    .MuiSvgIcon-root {
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 18px;
+    }
+  }
+
+  &__worn-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 6px;
+    height: 26px;
+    margin-bottom: 4px;
+    padding: 0 10px 0 8px;
+    border-radius: $radius-pill;
+    background-color: $c-success-soft;
+    color: $c-on-success-soft;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    @include tabular;
+
+    .MuiSvgIcon-root {
+      font-size: 16px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid $c-divider;
+  }
+
+  &__secondary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  &__kbd.kbd {
+    margin-left: 4px;
+
+    @media (hover: none) {
+      display: none;
+    }
+  }
+
+  &__unlock.MuiButton-root {
+    color: $c-text-secondary;
+    @include tabular;
+  }
+
+  &__wear.MuiButton-root,
+  &__change.MuiButton-root {
+    min-width: 132px;
+  }
+
+  // Phones: the main action takes the full width, above the quieter ones.
+  @include down(sm) {
+    &__actions {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+
+    &__secondary {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      .MuiButton-root {
+        min-height: 44px;
+      }
+    }
+
+    &__unlock.MuiButton-root {
+      grid-column: 1 / -1;
+    }
+
+    &__wear.MuiButton-root,
+    &__change.MuiButton-root {
+      width: 100%;
+      min-height: 48px;
+    }
+
+    &__view.MuiToggleButtonGroup-root {
+      width: 100%;
+
+      .MuiToggleButton-root {
+        flex: 1 1 0;
+        min-height: 40px;
+      }
+    }
+  }
+
+  // Skeleton shapes.
+  &__skeleton-photo.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: $radius-well;
+  }
+
+  &__skeleton-square.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: $radius-control;
+  }
+
+  &__skeleton-pill.MuiSkeleton-root {
+    border-radius: $radius-pill;
+  }
+}

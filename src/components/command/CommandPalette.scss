@@ -1,0 +1,241 @@
+.command-palette {
+  .MuiDialog-container {
+    align-items: flex-start;
+  }
+
+  &__paper.MuiDialog-paper {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - #{$space-2});
+    max-width: 640px;
+    max-height: calc(100dvh - #{$space-2});
+    margin: $space-1 auto;
+    overflow: hidden;
+
+    @include up(sm) {
+      width: calc(100% - #{$space-4});
+      max-height: min(600px, calc(100dvh - 20vh));
+      margin-top: 12vh;
+    }
+  }
+
+  &__search {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
+    min-height: 60px;
+    padding: 0 12px 0 $space-2;
+    border-bottom: 1px solid $c-divider;
+
+    @include up(sm) {
+      padding-right: $space-2;
+    }
+  }
+
+  &__search-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 22px;
+    color: $c-text-secondary;
+  }
+
+  &__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 56px;
+    padding: 0;
+    font-family: $font-family;
+    font-size: 1.0625rem;
+    color: $c-text;
+    background: transparent;
+    border: 0;
+    outline: none;
+
+    &::placeholder {
+      color: $c-text-secondary;
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__esc {
+    display: none;
+
+    @include up(sm) {
+      display: inline-flex;
+    }
+  }
+
+  &__cancel.MuiButton-root {
+    flex-shrink: 0;
+
+    @include up(sm) {
+      display: none;
+    }
+  }
+
+  &__results {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 4px $space-1 $space-1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  &__group + &__group {
+    margin-top: 4px;
+  }
+
+  &__group-title {
+    padding: 12px 12px 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: $c-text-secondary;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 6px 12px 6px 8px;
+    color: $c-text;
+    border-radius: $radius-control;
+    cursor: pointer;
+    user-select: none;
+
+    &--active {
+      background-color: $c-sunken;
+
+      .command-palette__icon {
+        color: $c-text;
+      }
+
+      .command-palette__enter {
+        visibility: visible;
+      }
+    }
+
+    &--loading {
+      cursor: default;
+    }
+  }
+
+  &__icon {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    color: $c-text-secondary;
+    background-color: $c-paper;
+    border: 1px solid $c-divider;
+    border-radius: $radius-control;
+  }
+
+  &__thumb.item-thumb {
+    flex-shrink: 0;
+  }
+
+  &__text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.35;
+    @include truncate;
+  }
+
+  &__secondary {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+    @include truncate;
+  }
+
+  &__status {
+    flex-shrink: 0;
+  }
+
+  &__keys {
+    display: none;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 4px;
+
+    @include up(sm) {
+      display: inline-flex;
+    }
+  }
+
+  &__key {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__then {
+    font-size: 0.75rem;
+    color: $c-text-secondary;
+  }
+
+  &__enter.MuiSvgIcon-root {
+    flex-shrink: 0;
+    visibility: hidden;
+    font-size: 18px;
+    color: $c-text-secondary;
+  }
+
+  &__empty {
+    padding: $space-5 $space-2;
+    text-align: center;
+  }
+
+  &__empty-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $c-text;
+    overflow-wrap: anywhere;
+  }
+
+  &__empty-text {
+    margin: 4px 0 0;
+    font-size: 0.875rem;
+    color: $c-text-secondary;
+  }
+
+  &__footer {
+    display: none;
+    flex-shrink: 0;
+    gap: $space-3;
+    padding: 10px $space-2;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+    border-top: 1px solid $c-divider;
+
+    @include up(sm) {
+      display: flex;
+    }
+  }
+
+  &__hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    .kbd + .kbd {
+      margin-left: 0;
+    }
+  }
+}

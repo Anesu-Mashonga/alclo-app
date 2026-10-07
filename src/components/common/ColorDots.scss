@@ -1,0 +1,34 @@
+.color-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+
+  &__dot {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 50%;
+    // The ring keeps white on white cards and black on dark cards visible.
+    box-shadow: inset 0 0 0 1px $c-border-strong;
+
+    &--multi > span {
+      flex: 1 1 0;
+    }
+  }
+
+  &--sm &__dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  &__more {
+    @include tabular;
+    margin-left: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $c-text-secondary;
+  }
+}

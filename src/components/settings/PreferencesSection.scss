@@ -1,0 +1,121 @@
+.preferences-section {
+  &__city.MuiAutocomplete-root {
+    width: 100%;
+
+    @include up(sm) {
+      width: 280px;
+    }
+
+    // Match the 44px height of every other text field (Autocomplete adds its own padding).
+    .MuiAutocomplete-inputRoot.MuiOutlinedInput-root {
+      padding-block: 0;
+      padding-left: 0;
+    }
+
+    .MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+      padding: 10.5px 14px;
+    }
+  }
+
+  &__city-option {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+
+  &__city-country {
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__source {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  &__occasion {
+    max-width: 100%;
+  }
+
+  &__urgent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include up(sm) {
+      width: 300px;
+    }
+  }
+
+  &__urgent-value {
+    align-self: flex-end;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__slider.MuiSlider-root {
+    margin-inline: 10px;
+    width: calc(100% - 20px);
+
+    .MuiSlider-markLabel {
+      font-size: 0.75rem;
+      color: $c-text-secondary;
+    }
+
+    .MuiSlider-markLabel[data-index='0'] {
+      transform: translateX(-10%);
+    }
+
+    .MuiSlider-markLabel[data-index='2'] {
+      transform: translateX(-90%);
+    }
+  }
+
+  &__weather {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px $space-1;
+    padding: 12px $space-2;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+    background-color: $c-bg;
+    border-radius: $radius-control;
+
+    &--muted {
+      color: $c-text-secondary;
+    }
+
+    &-icon.MuiSvgIcon-root {
+      font-size: 20px;
+      color: $c-info;
+    }
+
+    &-text {
+      flex: 1 1 auto;
+      min-width: 0;
+      color: $c-text;
+
+      strong {
+        font-weight: 600;
+      }
+    }
+
+    &-source {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: $c-text-secondary;
+    }
+
+    &-note {
+      flex-basis: 100%;
+      font-size: 0.8125rem;
+    }
+  }
+}

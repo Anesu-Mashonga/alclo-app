@@ -1,0 +1,259 @@
+.item-form-dialog {
+  &__paper.MuiDialog-paper {
+    --color-picker-surface: #{$c-raised};
+
+    @include up(sm) {
+      max-width: 880px;
+    }
+  }
+
+  &__content.MuiDialogContent-root {
+    padding-top: $space-1;
+
+    @include up(sm) {
+      padding-top: 12px;
+    }
+  }
+
+  &__actions.MuiDialogActions-root {
+    border-top: 1px solid $c-divider;
+    padding-top: $space-2;
+    padding-bottom: $space-2;
+
+    @include down(sm) {
+      padding-inline: $space-2;
+
+      .MuiButton-root {
+        flex: 1 1 0;
+        min-height: 44px;
+      }
+    }
+  }
+}
+
+.item-form {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+
+  &__grid {
+    display: grid;
+    gap: $space-3;
+
+    @include up(md) {
+      grid-template-columns: 272px minmax(0, 1fr);
+      gap: $space-4;
+      align-items: start;
+    }
+  }
+
+  &__media {
+    min-width: 0;
+
+    @include up(md) {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  &__skeleton-photo.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: $radius-well;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    min-width: 0;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__alert {
+    margin: 0;
+  }
+
+  &__label-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px $space-1;
+    margin-bottom: $space-1;
+
+    .item-form__label {
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $space-1;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $c-text;
+
+    span[aria-hidden] {
+      color: $c-text-secondary;
+    }
+  }
+
+  &__label-hint {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__label-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__error {
+    margin: 6px 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-error;
+  }
+
+  &__suggestion {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    min-height: 40px;
+    margin-top: $space-1;
+    padding: 2px 4px 2px 12px;
+    border-radius: $radius-control;
+    background-color: $c-sunken;
+    font-size: 0.875rem;
+    color: $c-text;
+
+    @include motion-safe {
+      animation: item-form-suggestion-in $duration-base $ease-standard both;
+    }
+  }
+
+  &__suggestion-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 18px;
+    color: $c-text-secondary;
+  }
+
+  &__suggestion-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    line-height: 1.4;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  &__suggestion-apply.MuiButton-root {
+    flex-shrink: 0;
+    color: $c-primary;
+  }
+
+  &__pair {
+    display: grid;
+    gap: $space-3;
+
+    @include up(sm) {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: $space-4;
+      align-items: start;
+    }
+  }
+
+  &__slider.MuiSlider-root {
+    width: calc(100% - 24px);
+    margin: 0 12px;
+    padding-block: 12px;
+
+    .MuiSlider-markLabel {
+      font-size: 0.8125rem;
+      color: $c-text-secondary;
+    }
+  }
+
+  &__field--switch {
+    gap: 2px;
+
+    @include up(sm) {
+      padding-top: 22px;
+    }
+  }
+
+  &__switch.MuiFormControlLabel-root {
+    margin-left: -8px;
+
+    .MuiFormControlLabel-label {
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+  }
+
+  &__more {
+    display: flex;
+    flex-direction: column;
+    margin-top: -$space-1;
+    border-top: 1px solid $c-divider;
+    padding-top: 12px;
+  }
+
+  &__more-toggle.MuiButton-root {
+    align-self: flex-start;
+    margin-left: -12px;
+
+    .MuiButton-endIcon {
+      transition: transform $duration-base $ease-standard;
+    }
+  }
+
+  &__more-toggle--open.MuiButton-root .MuiButton-endIcon {
+    transform: rotate(180deg);
+  }
+
+  &__more-grid {
+    display: grid;
+    gap: $space-3 $space-2;
+    padding-top: $space-2;
+
+    @include up(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__wash,
+  &__notes {
+    @include up(sm) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__wash .MuiInputBase-root {
+    max-width: 200px;
+  }
+}
+
+@keyframes item-form-suggestion-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

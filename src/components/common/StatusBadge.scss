@@ -1,0 +1,46 @@
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px 0 8px;
+  border-radius: $radius-pill;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  &__icon.MuiSvgIcon-root {
+    font-size: 16px;
+  }
+
+  &--sm {
+    height: 22px;
+    padding: 0 8px 0 6px;
+    font-size: 0.75rem;
+
+    .status-badge__icon.MuiSvgIcon-root {
+      font-size: 14px;
+    }
+  }
+
+  &--success {
+    background-color: $c-success-soft;
+    color: $c-on-success-soft;
+  }
+
+  &--warning {
+    background-color: $c-warning-soft;
+    color: $c-on-warning-soft;
+  }
+
+  &--info {
+    background-color: $c-info-soft;
+    color: $c-on-info-soft;
+  }
+
+  &--error {
+    background-color: $c-error-soft;
+    color: $c-on-error-soft;
+  }
+}

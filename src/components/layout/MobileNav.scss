@@ -1,0 +1,43 @@
+.mobile-nav {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-app-bar;
+  padding-bottom: $safe-bottom;
+  background-color: $c-paper;
+  border-top: 1px solid $c-divider;
+
+  &__bar.MuiBottomNavigation-root {
+    height: $bottom-nav-height;
+    background-color: transparent;
+  }
+
+  &__action.MuiBottomNavigationAction-root {
+    min-height: 48px;
+    text-decoration: none;
+  }
+
+  // Active destination gets the soft accent pill behind its icon.
+  &__action .MuiBadge-root {
+    display: inline-grid;
+    place-items: center;
+    width: 56px;
+    height: 30px;
+    border-radius: $radius-pill;
+
+    @include motion-safe {
+      transition: background-color $duration-base $ease-standard;
+    }
+  }
+
+  &__action.Mui-selected .MuiBadge-root {
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+  }
+
+  &__action .MuiBadge-badge {
+    top: 4px;
+    right: 12px;
+  }
+}

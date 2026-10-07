@@ -1,0 +1,110 @@
+.planner-tab {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  min-width: 0;
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px $space-2;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__nav-btn.MuiIconButton-root {
+    width: 40px;
+    height: 40px;
+    border: 1px solid $c-border-strong;
+
+    @include down(md) {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__range {
+    @include tabular;
+    min-width: 0;
+    margin: 0 $space-1;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  &__summary {
+    @include tabular;
+    margin: 0;
+    font-size: 0.875rem;
+    color: $c-text-secondary;
+  }
+
+  &__week {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include up(lg) {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+
+  &__day {
+    display: flex;
+    min-width: 0;
+
+    > .planner-day {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__state {
+    @include card-surface(null);
+    max-width: none;
+  }
+
+  @include down(sm) {
+    gap: $space-2;
+
+    &__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__nav {
+      justify-content: space-between;
+    }
+
+    &__range {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    &__meta {
+      justify-content: space-between;
+    }
+
+    &__this-week.MuiButton-root {
+      min-height: 40px;
+    }
+  }
+}

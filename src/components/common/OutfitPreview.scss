@@ -1,0 +1,145 @@
+.outfit-preview {
+  --outfit-gap: 6px;
+  min-width: 0;
+
+  &--sm {
+    --outfit-gap: 4px;
+  }
+
+  &--lg {
+    --outfit-gap: 10px;
+  }
+
+  // Tiles: square wells; smaller radius in compact previews.
+  &__tile.item-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  &--sm &__tile.item-thumb {
+    border-radius: $radius-sm;
+  }
+
+  // Grid: 2 by 2.
+  &--grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--outfit-gap);
+  }
+
+  &__cell {
+    position: relative;
+    min-width: 0;
+  }
+
+  &__more {
+    @include tabular;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    border-radius: $radius-well;
+    background-color: color-mix(in srgb, $c-ink 55%, transparent);
+    color: $c-on-ink;
+    font-size: 1rem;
+    font-weight: 600;
+
+    &--inline {
+      position: static;
+      flex-shrink: 0;
+      width: var(--outfit-strip-tile);
+      aspect-ratio: 1 / 1;
+      background-color: $c-sunken;
+      color: $c-text-secondary;
+      font-size: 0.875rem;
+    }
+  }
+
+  // Strip: one row.
+  &--strip {
+    --outfit-strip-tile: 56px;
+    display: flex;
+    align-items: center;
+    gap: var(--outfit-gap);
+    overflow: hidden;
+
+    .outfit-preview__tile.item-thumb {
+      width: var(--outfit-strip-tile);
+      flex-shrink: 0;
+      border-radius: $radius-control;
+
+      img {
+        padding: 6px;
+      }
+    }
+  }
+
+  &--strip.outfit-preview--sm {
+    --outfit-strip-tile: 40px;
+
+    .outfit-preview__tile.item-thumb {
+      border-radius: $radius-sm;
+
+      img {
+        padding: 3px;
+      }
+    }
+  }
+
+  &--strip.outfit-preview--lg {
+    --outfit-strip-tile: 72px;
+  }
+
+  // Flatlay: main column (outerwear + top, bottom, footwear) and an accessories column.
+  &--flatlay {
+    display: flex;
+    gap: var(--outfit-gap);
+    align-items: flex-start;
+  }
+
+  &__main {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: var(--outfit-gap);
+    min-width: 0;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--outfit-gap);
+
+    &--single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &--single .outfit-preview__tile.item-thumb {
+      aspect-ratio: 2 / 1;
+    }
+  }
+
+  &__tile--bottom.item-thumb {
+    aspect-ratio: 2 / 1.25;
+  }
+
+  &__tile--feet.item-thumb {
+    aspect-ratio: 2 / 0.9;
+  }
+
+  &__side {
+    display: flex;
+    flex: 0 0 30%;
+    flex-direction: column;
+    gap: var(--outfit-gap);
+  }
+
+  &--empty {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    border: 1px dashed $c-border-strong;
+    border-radius: $radius-well;
+    color: $c-text-secondary;
+  }
+}

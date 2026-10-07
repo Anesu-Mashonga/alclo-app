@@ -1,0 +1,133 @@
+.page-skeleton {
+  width: 100%;
+
+  &__header {
+    margin-bottom: $space-3;
+  }
+
+  &__title.MuiSkeleton-root {
+    width: min(260px, 70%);
+    height: 40px;
+  }
+
+  &__subtitle.MuiSkeleton-root {
+    width: min(380px, 90%);
+    height: 22px;
+  }
+
+  &__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+    margin-bottom: $space-3;
+  }
+
+  &__search.MuiSkeleton-root {
+    width: min(320px, 100%);
+    height: 44px;
+    border-radius: $radius-control;
+  }
+
+  &__chip.MuiSkeleton-root {
+    width: 84px;
+    height: 32px;
+    border-radius: $radius-pill;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2;
+
+    @include up(sm) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include up(lg) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: $space-3;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__photo.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin-bottom: $space-1;
+    border-radius: $radius-well;
+  }
+
+  &__list {
+    @include card-surface(6px);
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    padding: 10px;
+  }
+
+  &__thumb.MuiSkeleton-root {
+    flex-shrink: 0;
+    width: 48px;
+    height: 60px;
+    border-radius: $radius-control;
+  }
+
+  &__row-text {
+    flex: 1 1 auto;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-2;
+    margin-bottom: $space-2;
+
+    @include up(md) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: $space-3;
+      margin-bottom: $space-3;
+    }
+  }
+
+  &__stat.MuiSkeleton-root {
+    height: 112px;
+    border-radius: $radius-surface;
+  }
+
+  &__panels {
+    display: grid;
+    gap: $space-2;
+
+    @include up(md) {
+      grid-template-columns: 2fr 1fr;
+      gap: $space-3;
+    }
+  }
+
+  &__panel.MuiSkeleton-root {
+    height: 320px;
+    border-radius: $radius-surface;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 560px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

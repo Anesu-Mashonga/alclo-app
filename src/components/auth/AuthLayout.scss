@@ -1,0 +1,86 @@
+.auth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: $c-paper;
+
+  @include up(md) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  }
+
+  @include up(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: $space-2;
+
+    @include up(sm) {
+      padding: $space-3 $space-4;
+    }
+
+    @include up(lg) {
+      padding: $space-4 $space-6;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2;
+    min-height: 44px;
+  }
+
+  &__theme.MuiIconButton-root {
+    margin-right: -6px;
+  }
+
+  &__main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: $space-4;
+
+    @include up(md) {
+      padding-block: $space-6;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px $space-2;
+    color: $c-text-secondary;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  &__aside {
+    display: none;
+
+    @include up(md) {
+      position: sticky;
+      top: 0;
+      display: block;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 600px;
+      padding: $space-2 $space-2 $space-2 0;
+    }
+  }
+}

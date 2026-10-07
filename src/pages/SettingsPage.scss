@@ -1,0 +1,32 @@
+.settings-page {
+  // The header sits flush on top of the sticky pill strip on small screens.
+  .page-header {
+    @include down(md) {
+      margin-bottom: $space-1;
+    }
+  }
+
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    @include up(md) {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: $space-4;
+      align-items: start;
+    }
+
+    @include up(lg) {
+      grid-template-columns: 248px minmax(0, 1fr);
+      gap: $space-5;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    max-width: 760px;
+    min-width: 0;
+  }
+}

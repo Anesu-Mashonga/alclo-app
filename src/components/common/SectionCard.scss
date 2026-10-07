@@ -1,0 +1,89 @@
+.section-card {
+  @include card-surface(null);
+  --section-card-pad: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  @include up(md) {
+    --section-card-pad: #{$space-3};
+  }
+
+  &--pad-sm {
+    --section-card-pad: #{$space-2};
+
+    @include up(md) {
+      --section-card-pad: #{$space-2};
+    }
+  }
+
+  &--pad-lg {
+    --section-card-pad: #{$space-3};
+
+    @include up(md) {
+      --section-card-pad: #{$space-4};
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-2;
+    padding: var(--section-card-pad) var(--section-card-pad) 0;
+  }
+
+  &__titles {
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: $c-text;
+  }
+
+  &__subtitle {
+    margin: 2px 0 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    flex-shrink: 0;
+    margin-block: -6px;
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: var(--section-card-pad);
+  }
+
+  &__header + &__body {
+    padding-top: $space-2;
+  }
+
+  &--pad-none &__body {
+    padding: 0;
+  }
+
+  &--pad-none &__header {
+    padding: $space-2 $space-2 0;
+
+    @include up(md) {
+      padding: 20px $space-3 0;
+    }
+  }
+
+  &--pad-none &__header + &__body {
+    padding-top: 12px;
+  }
+}

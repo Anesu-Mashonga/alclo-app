@@ -1,0 +1,22 @@
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1;
+
+  &__chip.MuiChip-root {
+    // Same footprint selected or not, so the row never shifts.
+    border: 1px solid transparent;
+
+    &.MuiChip-outlined {
+      border-color: $c-border-strong;
+    }
+
+    &.MuiChip-filled {
+      border-color: transparent;
+    }
+  }
+
+  &--invalid &__chip.MuiChip-outlined {
+    border-color: $c-error;
+  }
+}

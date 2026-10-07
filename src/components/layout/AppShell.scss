@@ -1,0 +1,68 @@
+@keyframes app-page-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.app-shell {
+  // Heights page agents can rely on (sticky toolbars use top: var(--alclo-topbar-height)).
+  --alclo-topbar-height: #{$mobile-topbar-height};
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+  background-color: $c-bg;
+
+  @include up(md) {
+    --alclo-topbar-height: #{$topbar-height};
+  }
+
+  &__column {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__main {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    max-width: $content-max-width + 2 * $gutter-lg;
+    margin-inline: auto;
+    padding-top: $space-2;
+    padding-bottom: $space-6;
+    @include page-gutters;
+
+    @include up(md) {
+      padding-top: $space-3;
+    }
+
+    @include up(lg) {
+      padding-top: $space-4;
+    }
+  }
+
+  &--mobile &__content {
+    padding-bottom: calc(#{$bottom-nav-height} + #{$safe-bottom} + #{$space-4});
+  }
+
+  &__page {
+    min-width: 0;
+
+    @include motion-safe {
+      animation: app-page-in $duration-page $ease-standard both;
+    }
+  }
+}

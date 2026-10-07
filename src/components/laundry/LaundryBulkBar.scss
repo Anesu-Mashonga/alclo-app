@@ -1,0 +1,64 @@
+.laundry-bulk-bar {
+  @include overlay-surface($radius-surface);
+  position: sticky;
+  bottom: calc(var(--alclo-bottom-inset, 0px) + #{$space-2});
+  z-index: $z-bulk-bar;
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 56px;
+  margin: $space-2 auto 0;
+  padding: $space-1 $space-1 $space-1 $space-2;
+  border: 1px solid $c-divider;
+
+  &__count {
+    @include tabular;
+    flex-shrink: 0;
+    padding-right: $space-1;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__actions {
+    @include scrollbar-hidden;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    padding-left: $space-1;
+    border-left: 1px solid $c-divider;
+    overflow-x: auto;
+  }
+
+  &__action.MuiButton-root {
+    flex-shrink: 0;
+    min-height: 40px;
+    color: $c-text;
+
+    .MuiButton-startIcon svg {
+      font-size: 18px;
+    }
+  }
+
+  &__close.MuiIconButton-root {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    color: $c-text-secondary;
+  }
+}
+
+@media (pointer: coarse) {
+  .laundry-bulk-bar__action.MuiButton-root,
+  .laundry-bulk-bar__close.MuiIconButton-root {
+    min-height: 44px;
+  }
+
+  .laundry-bulk-bar__close.MuiIconButton-root {
+    width: 44px;
+    height: 44px;
+  }
+}

@@ -1,0 +1,145 @@
+.laundry-column {
+  &.section-card {
+    min-width: 0;
+  }
+
+  &__title {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  &__count {
+    @include tabular;
+    display: inline-grid;
+    place-items: center;
+    min-width: 24px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: $radius-pill;
+    background-color: $c-sunken;
+    color: $c-text-secondary;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  &--hamper &__count {
+    background-color: $c-warning-soft;
+    color: $c-on-warning-soft;
+  }
+
+  &--washing &__count {
+    background-color: $c-info-soft;
+    color: $c-on-info-soft;
+  }
+
+  &--clean &__count {
+    background-color: $c-success-soft;
+    color: $c-on-success-soft;
+  }
+
+  // Under tabs the tab already names the list; keep the heading for screen readers only.
+  &--tabbed .section-card__title {
+    @include visually-hidden;
+  }
+
+  &--tabbed .section-card__header {
+    align-items: center;
+  }
+
+  &__bulk.MuiButton-root {
+    min-height: 36px;
+
+    .MuiButton-startIcon svg {
+      font-size: 18px;
+    }
+  }
+
+  // Lines the select-all box up with the row checkboxes below it.
+  &__select-all {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 40px;
+    margin: 0 $space-1;
+    padding: 0 $space-1 0 2px;
+    border-bottom: 1px solid $c-divider;
+
+    @include up(md) {
+      margin: 0 12px;
+    }
+  }
+
+  &__select-all-box.MuiCheckbox-root {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+
+  &__select-all-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $c-text-secondary;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__selected-count {
+    @include tabular;
+    margin-left: auto;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  .laundry-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 6px $space-1 $space-1;
+
+    @include up(md) {
+      padding: 6px 12px 12px;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__empty.empty-state {
+    padding-top: $space-3;
+    padding-bottom: $space-4;
+  }
+
+  &__no-match {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin: 0 $space-2 $space-2;
+    padding: $space-2;
+    border-radius: $radius-control;
+    background-color: $c-sunken;
+
+    @include up(md) {
+      margin: 0 $space-3 $space-3;
+    }
+  }
+
+  &__no-match-text {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+  }
+}
+
+@media (pointer: coarse) {
+  .laundry-column__select-all-box.MuiCheckbox-root {
+    width: 44px;
+    height: 44px;
+  }
+}

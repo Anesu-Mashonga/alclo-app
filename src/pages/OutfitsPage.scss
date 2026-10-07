@@ -1,0 +1,28 @@
+.outfits-page {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  .page-header__extra {
+    margin-top: $space-2;
+    border-bottom: 1px solid $c-divider;
+  }
+
+  &__tabs.MuiTabs-root {
+    margin-bottom: -1px;
+  }
+
+  &__tabs .MuiTab-root {
+    @include tabular;
+  }
+
+  &__panel {
+    min-width: 0;
+  }
+
+  @include down(sm) {
+    &__new.MuiButton-root {
+      min-height: 44px;
+    }
+  }
+}

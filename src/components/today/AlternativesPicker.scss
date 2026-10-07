@@ -1,0 +1,158 @@
+.alt-picker-popover__paper.MuiPaper-root {
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  margin-top: 6px;
+}
+
+.alt-picker-sheet__paper.MuiPaper-root {
+  max-height: 85dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  background-color: $c-raised;
+}
+
+.alt-picker-sheet__handle {
+  display: block;
+  width: 36px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: $radius-pill;
+  background-color: $c-border-strong;
+}
+
+.alt-picker {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: $space-1;
+    padding: $space-2 $space-2 $space-1;
+  }
+
+  &__titles {
+    min-width: 0;
+    padding-inline: 4px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__subtitle {
+    margin: 2px 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__close.MuiIconButton-root {
+    margin: -6px -6px 0 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0 $space-1 $space-1;
+    overflow-y: auto;
+    list-style: none;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 6px;
+    border: 0;
+    border-radius: $radius-control;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color $duration-fast $ease-standard;
+    @include focus-ring(-2px);
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-hover;
+      }
+    }
+
+    &:focus-visible {
+      background-color: $c-hover;
+    }
+  }
+
+  &__thumb.item-thumb {
+    width: 56px;
+    border-radius: $radius-sm;
+  }
+
+  &__text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__name {
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: $c-text;
+  }
+
+  &__reason {
+    @include truncate;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__chevron.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 20px;
+    color: $c-text-secondary;
+  }
+
+  &__skeleton {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px;
+  }
+
+  &__skeleton-text {
+    flex: 1 1 auto;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 4px $space-2 $space-2 20px;
+
+    p {
+      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: $c-text-secondary;
+    }
+  }
+
+  .error-state {
+    margin: 0 $space-2 $space-2;
+  }
+}

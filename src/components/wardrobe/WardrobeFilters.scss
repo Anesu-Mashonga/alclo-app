@@ -1,0 +1,121 @@
+.wardrobe-filters {
+  &__button.MuiButton-root {
+    min-height: 44px;
+  }
+
+  &__count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 20px;
+    height: 20px;
+    margin-left: $space-1;
+    padding: 0 6px;
+    border-radius: $radius-pill;
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+    font-size: 0.75rem;
+    font-weight: 700;
+    @include tabular;
+  }
+
+  &__icon-button.MuiIconButton-root {
+    width: 44px;
+    height: 44px;
+    border: 1px solid $c-border-strong;
+  }
+
+  &__popover-paper.MuiPopover-paper {
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    margin-top: $space-1;
+    border: 1px solid $c-divider;
+    border-radius: $radius-surface;
+  }
+
+  &__sheet-paper.MuiDrawer-paper {
+    max-height: 88dvh;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: inherit;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $space-2 12px $space-1 $space-3;
+
+    @include down(sm) {
+      padding-left: $space-2;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    padding: $space-1 $space-3 $space-3;
+    overflow-y: auto;
+
+    @include down(sm) {
+      padding-inline: $space-2;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__label {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $c-text-secondary;
+  }
+
+  &__switch.MuiFormControlLabel-root {
+    justify-content: space-between;
+    margin: 0;
+    padding-top: $space-2;
+    border-top: 1px solid $c-divider;
+
+    .MuiFormControlLabel-label {
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    gap: $space-1;
+    padding: 12px $space-3 $space-2;
+    border-top: 1px solid $c-divider;
+
+    @include down(sm) {
+      padding-inline: $space-2;
+
+      .MuiButton-root {
+        min-height: 44px;
+      }
+
+      .MuiButton-contained {
+        flex: 1 1 auto;
+      }
+    }
+  }
+}

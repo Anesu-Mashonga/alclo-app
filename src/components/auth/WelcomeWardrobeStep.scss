@@ -1,0 +1,32 @@
+.welcome-wardrobe {
+  &.MuiFormGroup-root {
+    flex-wrap: nowrap;
+    gap: $space-2;
+  }
+
+  &__strip {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: $space-1;
+  }
+
+  &__well {
+    @include photo-well($radius-sm, 10%);
+    display: block;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__slot {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    border: 1px dashed $c-border-strong;
+    border-radius: $radius-sm;
+    background-color: $c-sunken;
+  }
+
+  &__add.MuiSvgIcon-root {
+    color: $c-text-secondary;
+    font-size: 22px;
+  }
+}

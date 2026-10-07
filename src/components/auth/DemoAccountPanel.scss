@@ -1,0 +1,73 @@
+.demo-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding: $space-2;
+  border: 1px solid $c-divider;
+  border-radius: $radius-surface;
+
+  @include up(sm) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'title title'
+      'creds button';
+    align-items: end;
+    column-gap: $space-2;
+
+    .demo-panel__title {
+      grid-area: title;
+    }
+
+    .demo-panel__creds {
+      grid-area: creds;
+    }
+
+    .demo-panel__button {
+      grid-area: button;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    color: $c-text;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  &__creds {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+  }
+
+  &__cred {
+    display: flex;
+    gap: $space-1;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+
+    dt {
+      min-width: 64px;
+      color: $c-text-secondary;
+    }
+
+    dd {
+      margin: 0;
+      color: $c-text;
+      font-weight: 500;
+      @include tabular;
+      user-select: all;
+    }
+  }
+
+  &__button.MuiButton-root {
+    margin-top: 4px;
+    white-space: nowrap;
+
+    @include up(sm) {
+      margin-top: 0;
+    }
+  }
+}

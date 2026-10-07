@@ -1,0 +1,143 @@
+.laundry-snapshot {
+  @include card-surface(20px);
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  min-width: 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__open.MuiButton-root {
+    margin-right: -8px;
+    color: $c-text-secondary;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-1;
+    margin: 0;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 2px;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: $radius-control;
+    background-color: $c-sunken;
+
+    dt {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.8125rem;
+      line-height: 1.3;
+      color: $c-text-secondary;
+
+      .MuiSvgIcon-root {
+        margin-left: -3px;
+        font-size: 15px;
+      }
+    }
+
+    dd {
+      @include tabular;
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: $c-text;
+    }
+
+    &--urgent {
+      background-color: $c-error-soft;
+
+      dt,
+      dd {
+        color: $c-on-error-soft;
+      }
+    }
+  }
+
+  &__urgent {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-on-error-soft;
+
+    .MuiSvgIcon-root {
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 16px;
+      color: $c-error;
+    }
+  }
+
+  &__readiness {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    padding-top: 12px;
+    border-top: 1px solid $c-divider;
+  }
+
+  &__line {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+
+    strong {
+      @include tabular;
+      font-weight: 600;
+      color: $c-text;
+    }
+  }
+
+  &__meter {
+    position: relative;
+    height: 6px;
+    overflow: hidden;
+    border-radius: $radius-pill;
+    background-color: $c-sunken;
+  }
+
+  &__meter-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: $c-success;
+    transform: scaleX(var(--fill, 0));
+    transform-origin: left center;
+
+    @include motion-safe {
+      transition: transform $duration-slow $ease-standard;
+    }
+  }
+}

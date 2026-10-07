@@ -1,0 +1,113 @@
+.wardrobe-toolbar {
+  position: sticky;
+  top: var(--alclo-topbar-height, 64px);
+  z-index: $z-sticky;
+  margin-inline: -$gutter-xs;
+  padding: $space-1 $gutter-xs 0;
+  background-color: $c-bg;
+  border-bottom: 1px solid $c-divider;
+  transition: box-shadow $duration-base $ease-standard;
+
+  @include up(md) {
+    margin-inline: -$gutter-md;
+    padding-inline: $gutter-md;
+  }
+
+  @include up(lg) {
+    margin-inline: -$gutter-lg;
+    padding-inline: $gutter-lg;
+  }
+
+  &--stuck {
+    box-shadow: 0 6px 12px -10px rgb(24 24 27 / 0.25);
+  }
+
+  &__sentinel {
+    height: 1px;
+    margin-bottom: -1px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  &__search.MuiFormControl-root {
+    flex: 1 1 auto;
+    min-width: 0;
+
+    @include up(md) {
+      max-width: 480px;
+      margin-right: auto;
+    }
+
+    .MuiInputBase-input::-webkit-search-cancel-button {
+      appearance: none;
+    }
+  }
+
+  &__kbd {
+    @include down(md) {
+      display: none;
+    }
+  }
+
+  &__tabs.MuiTabs-root {
+    margin-top: $space-1;
+    margin-inline: -6px;
+    min-height: 44px;
+  }
+
+  &__tab.MuiTab-root {
+    padding-inline: 10px;
+  }
+
+  &__tab-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__tab-count {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: $c-text-secondary;
+    @include tabular;
+  }
+
+  &__active {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-1;
+    padding-top: $space-2;
+  }
+
+  &__result-count {
+    margin-right: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $c-text-secondary;
+    @include tabular;
+  }
+
+  &__chip.MuiChip-root {
+    height: 28px;
+    background-color: $c-paper;
+    border: 1px solid $c-border-strong;
+
+    .MuiChip-label {
+      padding-left: 10px;
+    }
+  }
+
+  &__chip-swatch.color-swatch {
+    margin-left: 8px;
+    margin-right: -4px;
+  }
+
+  &__clear.MuiButton-root {
+    color: $c-text-secondary;
+  }
+}

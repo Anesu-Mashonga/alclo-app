@@ -1,0 +1,76 @@
+// Toast host: bottom-left on desktop, full width above the bottom navigation on mobile.
+.toast-host {
+  @include down(sm) {
+    left: $space-1;
+    right: $space-1;
+    bottom: calc(var(--alclo-bottom-inset, 0px) + #{$space-1});
+  }
+
+  @include up(sm) {
+    left: $space-3;
+    bottom: calc(var(--alclo-bottom-inset, 0px) + #{$space-3});
+  }
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 48px;
+  padding: 6px 6px 6px $space-2;
+  background-color: $c-ink;
+  color: $c-on-ink;
+  border-radius: 12px;
+  box-shadow: $shadow-overlay;
+
+  @include up(sm) {
+    width: auto;
+    min-width: 320px;
+    max-width: 480px;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+
+  &__message {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding-block: 6px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  // The action is the one thing to press, so it gets weight and a visible hover surface.
+  &__action.MuiButton-root {
+    min-height: 36px;
+    padding-inline: 12px;
+    font-weight: 600;
+    color: $c-on-ink;
+    background-color: color-mix(in srgb, $c-on-ink 8%, transparent);
+
+    &:hover {
+      background-color: color-mix(in srgb, $c-on-ink 16%, transparent);
+    }
+  }
+
+  &__close.MuiIconButton-root {
+    color: $c-on-ink;
+    opacity: 0.72;
+
+    &:hover {
+      opacity: 1;
+      background-color: color-mix(in srgb, $c-on-ink 12%, transparent);
+    }
+  }
+}

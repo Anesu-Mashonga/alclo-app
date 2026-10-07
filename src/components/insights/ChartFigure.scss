@@ -1,0 +1,196 @@
+.chart-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  margin: 0;
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px $space-2;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  // Legend keys mirror the mark: a small rect for bars.
+  &__key {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background-color: var(--chart-key);
+  }
+
+  &__plot {
+    position: relative;
+    min-width: 0;
+    transition: opacity $duration-base $ease-standard;
+  }
+
+  &--busy &__plot {
+    opacity: 0.5;
+  }
+
+  // Shared x-charts chrome: recessive axes and grid, text tokens for every label.
+  &__plot .MuiChartsAxis-tickLabel,
+  &__plot .MuiChartsAxis-label {
+    fill: $c-text-secondary;
+    font-family: $font-family;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__plot .MuiChartsAxis-line,
+  &__plot .MuiChartsAxis-tick {
+    stroke: $c-divider;
+  }
+
+  &__plot .MuiChartsGrid-line {
+    stroke: $c-divider;
+    stroke-dasharray: none;
+  }
+
+  &__plot .MuiChartsAxisHighlight-root {
+    fill: $c-hover;
+  }
+
+  &__plot .MuiBarChart-label {
+    fill: $c-text;
+    font-family: $font-family;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__table-wrap {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    @include tabular;
+
+    th,
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid $c-divider;
+      text-align: right;
+      color: $c-text;
+    }
+
+    th[scope='row'],
+    thead th:first-child {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    thead th {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: $c-text-secondary;
+    }
+
+    tbody tr:last-child th,
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+  }
+}
+
+// Chart tooltips render in a portal, so they are styled from here by class.
+// Raised surface, 1px border, overlay shadow; the value is the strong element.
+.insights-tooltip {
+  pointer-events: none;
+}
+
+.chart-tooltip {
+  min-width: 168px;
+  max-width: 260px;
+  padding: 8px 12px;
+  border: 1px solid $c-divider;
+  border-radius: $radius-control;
+  background-color: $c-raised;
+  box-shadow: $shadow-overlay;
+  color: $c-text;
+  font-family: $font-family;
+
+  &__title {
+    margin: 0 0 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 22px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  // Line keys rather than filled boxes.
+  &__key {
+    flex-shrink: 0;
+    width: 12px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--chart-key);
+  }
+
+  &__label {
+    flex: 1 1 auto;
+    color: $c-text-secondary;
+  }
+
+  &__value {
+    @include tabular;
+    padding-left: 12px;
+    font-weight: 600;
+    color: $c-text;
+  }
+}
+
+// Horizontal bar charts: category names read as labels, not axis numbers.
+.chart-figure--horizontal .MuiChartsAxis-directionY .MuiChartsAxis-tickLabel {
+  fill: $c-text;
+  font-size: 0.875rem;
+  font-variant-numeric: normal;
+}
+
+// Stacked bars: a 2px surface gap between segments, drawn in the card colour (not a border).
+.chart-figure--stacked .MuiBarChart-element {
+  stroke: $c-paper;
+  stroke-width: 2px;
+}
+
+// Right-hand label axis on horizontal bars: values read as a quiet number column.
+.chart-figure--horizontal .MuiChartsAxis-right .MuiChartsAxis-tickLabel {
+  fill: $c-text;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

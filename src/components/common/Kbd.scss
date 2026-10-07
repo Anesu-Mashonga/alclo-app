@@ -1,0 +1,22 @@
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: $font-family;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: $c-text-secondary;
+  background-color: $c-paper;
+  border: 1px solid $c-border-strong;
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  white-space: nowrap;
+
+  & + & {
+    margin-left: 4px;
+  }
+}

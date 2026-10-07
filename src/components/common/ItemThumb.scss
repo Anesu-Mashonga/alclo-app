@@ -1,0 +1,75 @@
+.item-thumb {
+  @include photo-well($radius-well, 8%);
+  flex-shrink: 0;
+  width: 100%;
+  // Fixed light well: the icon colour must not follow the theme.
+  --item-thumb-icon: #52525b;
+
+  &--portrait {
+    aspect-ratio: 4 / 5;
+  }
+
+  &--square {
+    aspect-ratio: 1 / 1;
+  }
+
+  &--xs {
+    width: 40px;
+    border-radius: $radius-sm;
+
+    .item-thumb__img {
+      padding: 3px;
+    }
+  }
+
+  &--sm {
+    width: 64px;
+    border-radius: $radius-control;
+
+    .item-thumb__img {
+      padding: 5px;
+    }
+  }
+
+  &--lg {
+    border-radius: $radius-surface;
+
+    .item-thumb__img {
+      padding: 7%;
+    }
+  }
+
+  &__fallback {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__swatch {
+    display: grid;
+    place-items: center;
+    width: 46%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, var(--item-thumb-swatch, #a1a1aa) 38%, transparent);
+    box-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.06);
+  }
+
+  &__icon.MuiSvgIcon-root {
+    width: 55%;
+    height: 55%;
+    color: var(--item-thumb-icon);
+  }
+
+  &__status {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+  }
+
+  &--xs &__status,
+  &--sm &__status {
+    display: none;
+  }
+}

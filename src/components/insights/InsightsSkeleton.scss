@@ -1,0 +1,67 @@
+.insights-skeleton {
+  &__card {
+    @include card-surface(20px);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    @include up(md) {
+      padding: $space-3;
+    }
+  }
+
+  &__title {
+    font-size: 1.0625rem;
+  }
+
+  &__subtitle {
+    font-size: 0.875rem;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: $space-2;
+  }
+
+  &__columns {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 300px;
+    padding: 8px 8px 28px 36px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+  }
+
+  &__thumb.MuiSkeleton-root {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-sm;
+  }
+
+  &__row-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__hbar {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    min-height: 28px;
+  }
+
+  &__swatches.MuiSkeleton-root {
+    border-radius: $radius-pill;
+  }
+}

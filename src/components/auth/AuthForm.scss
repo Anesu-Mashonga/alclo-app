@@ -1,0 +1,35 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  // Remember me + Forgot password: sits closer to the fields around it.
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px $space-2;
+    margin-block: -8px;
+
+    .MuiFormControlLabel-root {
+      margin-left: -9px;
+    }
+  }
+
+  &__alt {
+    margin: $space-3 0 0;
+    color: $c-text-secondary;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: center;
+
+    // Inline link with a taller hit area for touch.
+    .MuiLink-root {
+      display: inline-block;
+      margin-block: -12px;
+      padding-block: 12px;
+      font-weight: 600;
+    }
+  }
+}

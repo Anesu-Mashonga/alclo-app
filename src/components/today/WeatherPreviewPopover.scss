@@ -1,0 +1,80 @@
+.weather-preview__paper.MuiPaper-root {
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  margin-top: 6px;
+}
+
+.weather-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__subtitle {
+    margin: 2px 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+  }
+
+  &__label-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__value {
+    @include tabular;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__slider.MuiSlider-root {
+    margin: 0 10px;
+    width: calc(100% - 20px);
+  }
+
+  &__range {
+    @include tabular;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -6px;
+    font-size: 0.75rem;
+    color: $c-text-secondary;
+  }
+
+  &__conditions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $space-1;
+    padding-top: $space-2;
+    border-top: 1px solid $c-divider;
+  }
+}

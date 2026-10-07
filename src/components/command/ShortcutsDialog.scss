@@ -1,0 +1,85 @@
+.shortcuts-dialog {
+  &__content.MuiDialogContent-root {
+    display: grid;
+    gap: $space-3;
+    padding-top: $space-2;
+
+    @include up(md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto 1fr;
+      column-gap: $space-4;
+    }
+  }
+
+  // Navigation is the longest list, so it gets the left column on its own.
+  &__group--navigation {
+    @include up(md) {
+      grid-row: span 2;
+    }
+  }
+
+  &__group-title {
+    margin: 0 0 4px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: $c-text-secondary;
+  }
+
+  &__list {
+    margin: 0;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2;
+    min-height: 44px;
+    border-bottom: 1px solid $c-divider;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__where {
+    font-size: 0.75rem;
+    color: $c-text-secondary;
+  }
+
+  &__keys {
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  &__visual {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__key {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    .kbd + .kbd {
+      margin-left: 0;
+    }
+  }
+
+  &__sep {
+    font-size: 0.75rem;
+    color: $c-text-secondary;
+  }
+}

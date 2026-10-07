@@ -1,0 +1,154 @@
+.not-worn {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  min-width: 0;
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-2;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: $c-text;
+  }
+
+  &__subtitle {
+    margin: 2px 0 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__tools {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  // Arrow buttons only help pointer users; touch screens swipe.
+  &__arrows {
+    display: none;
+    gap: 4px;
+
+    @include hover-capable {
+      display: flex;
+    }
+  }
+
+  &__all.MuiButton-root {
+    flex-shrink: 0;
+    margin-right: -8px;
+    color: $c-text-secondary;
+  }
+
+  // Bleeds to the page edge on phones so cards scroll under the gutter.
+  &__row {
+    @include scrollbar-hidden;
+    display: grid;
+    grid-auto-columns: 156px;
+    grid-auto-flow: column;
+    gap: $space-2;
+    margin: 0 (-$gutter-xs);
+    padding: 2px $gutter-xs 6px;
+    overflow-x: auto;
+    list-style: none;
+    scroll-padding-inline: $gutter-xs;
+    scroll-snap-type: x mandatory;
+
+    @include up(md) {
+      grid-auto-columns: 176px;
+      margin-inline: 0;
+      padding-inline: 2px;
+      scroll-padding-inline: 2px;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  &__open {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0;
+    border: 0;
+    border-radius: $radius-well;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    @include focus-ring;
+    @include pressable(0.985);
+
+    .item-thumb {
+      margin-bottom: $space-1;
+      box-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.04);
+    }
+  }
+
+  &__name {
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: $c-text;
+  }
+
+  &__days {
+    @include tabular;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__wear.MuiButton-root {
+    align-self: flex-start;
+    min-height: 36px;
+
+    @media (hover: none) {
+      min-height: 44px;
+    }
+  }
+
+  &__wear--on.MuiButton-root.Mui-disabled {
+    padding-inline: 0;
+    color: $c-on-accent-soft;
+  }
+
+  &__skeleton-photo.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: $radius-well;
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    margin: 0;
+    padding: $space-2;
+    border: 1px dashed $c-border-strong;
+    border-radius: $radius-surface;
+    color: $c-text-secondary;
+    font-size: 0.875rem;
+
+    .MuiSvgIcon-root {
+      font-size: 18px;
+      color: $c-success;
+    }
+  }
+}

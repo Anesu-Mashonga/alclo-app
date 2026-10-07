@@ -1,0 +1,235 @@
+.week-plan {
+  @include card-surface(20px);
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__open.MuiButton-root {
+    margin-right: -8px;
+    color: $c-text-secondary;
+  }
+
+  &__callout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-1 12px;
+    padding: 12px;
+    border-radius: $radius-control;
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+  }
+
+  &__callout-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    font-size: 20px;
+  }
+
+  &__callout-text {
+    flex: 1 1 160px;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.45;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  &__use.MuiButton-root {
+    flex-shrink: 0;
+  }
+
+  &__days {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__day {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 56px;
+    padding: 8px 0;
+
+    & + & {
+      border-top: 1px solid $c-divider;
+    }
+
+    &--today {
+      margin-inline: -8px;
+      padding-inline: 8px;
+      border-radius: $radius-control;
+      background-color: $c-sunken;
+
+      & + .week-plan__day {
+        border-top-color: transparent;
+      }
+    }
+
+    &--past .week-plan__strip {
+      opacity: 0.6;
+    }
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 44px;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+
+  &__dow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $c-text-secondary;
+  }
+
+  &__num {
+    @include tabular;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__day--today &__dow {
+    color: $c-primary;
+    font-weight: 600;
+  }
+
+  &__content {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  &__strip.outfit-preview {
+    flex-shrink: 0;
+  }
+
+  &__label {
+    @include truncate;
+    font-size: 0.875rem;
+    color: $c-text;
+  }
+
+  &__day--past &__label {
+    color: $c-text-secondary;
+  }
+
+  &__muted {
+    font-size: 0.8125rem;
+    color: $c-text-disabled;
+  }
+
+  &__plan-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-height: 36px;
+    padding: 0 12px 0 8px;
+    border: 1px dashed $c-border-strong;
+    border-radius: $radius-pill;
+    color: $c-text-secondary;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background-color $duration-fast $ease-standard,
+      color $duration-fast $ease-standard;
+    @include focus-ring;
+
+    .MuiSvgIcon-root {
+      font-size: 16px;
+    }
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-hover;
+        color: $c-text;
+      }
+    }
+  }
+
+  // Wide card (tablet row): seven columns.
+  @container (min-width: 620px) {
+    &__days {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: $space-1;
+    }
+
+    &__day {
+      flex-direction: column;
+      align-items: stretch;
+      gap: $space-1;
+      min-height: 132px;
+      margin: 0;
+      padding: 10px;
+      border: 1px solid $c-divider;
+      border-radius: $radius-control;
+
+      & + & {
+        border-top: 1px solid $c-divider;
+      }
+
+      &--today {
+        margin: 0;
+        padding: 10px;
+        border-color: $c-border-strong;
+
+        & + .week-plan__day {
+          border-top-color: $c-divider;
+        }
+      }
+    }
+
+    &__date {
+      flex: 0 0 auto;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    &__label {
+      max-width: 100%;
+      font-size: 0.8125rem;
+    }
+
+    &__strip.outfit-preview--strip {
+      --outfit-strip-tile: 36px;
+      flex-wrap: wrap;
+      max-width: 100%;
+    }
+  }
+}

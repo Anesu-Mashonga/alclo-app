@@ -1,0 +1,45 @@
+.favorite-button {
+  &.MuiIconButton-root {
+    position: relative;
+    color: $c-text-secondary;
+    font-size: 1.25rem;
+
+    // Keep a 44px touch target even when the visible button is smaller.
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+  }
+
+  &--on.MuiIconButton-root {
+    color: $c-primary;
+  }
+
+  // On the photo well: the well stays light in dark mode, so these colours are fixed.
+  &--photo.MuiIconButton-root {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    color: #3f3f46;
+    background-color: rgb(255 255 255 / 0.82);
+    box-shadow: 0 1px 2px rgb(24 24 27 / 0.08);
+    font-size: 1.125rem;
+
+    @include hover-capable {
+      &:hover {
+        background-color: #fff;
+        color: #18181b;
+      }
+    }
+  }
+
+  &--photo.favorite-button--on.MuiIconButton-root {
+    color: #b21f57;
+  }
+}

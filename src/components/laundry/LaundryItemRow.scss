@@ -1,0 +1,177 @@
+// Row grid: [check] [photo + text] [actions]. In narrow lists (side column, phones) the actions
+// drop to a second line, aligned with the text (see the container query at the bottom).
+.laundry-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: 'check main actions';
+  align-items: center;
+  column-gap: 4px;
+  min-height: 64px;
+  padding: 4px $space-1 4px 2px;
+  border-radius: $radius-control;
+  list-style: none;
+  transition: background-color $duration-fast $ease-standard;
+
+  @include hover-capable {
+    &:hover {
+      background-color: $c-hover;
+    }
+  }
+
+  &--selected,
+  &--selected:hover {
+    background-color: $c-sunken;
+  }
+
+  &__check.MuiCheckbox-root {
+    grid-area: check;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+  }
+
+  &__main.MuiButtonBase-root {
+    grid-area: main;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    min-width: 0;
+    min-height: 56px;
+    padding: 4px 4px 4px 2px;
+    border-radius: $radius-sm;
+    color: inherit;
+    text-align: left;
+    @include focus-ring(2px);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: $space-1;
+    min-width: 0;
+  }
+
+  &__name {
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__urgent {
+    flex-shrink: 0;
+  }
+
+  &__meta {
+    @include truncate;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__actions {
+    grid-area: actions;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__action.MuiButton-root {
+    min-height: 36px;
+
+    .MuiButton-startIcon svg {
+      font-size: 18px;
+    }
+  }
+
+  &__action.MuiButton-root:not(.laundry-row__action--primary) {
+    color: $c-text-secondary;
+
+    @include hover-capable {
+      &:hover {
+        color: $c-text;
+      }
+    }
+  }
+}
+
+.laundry-list {
+  container: laundry-list / inline-size;
+}
+
+// Medium lists: the secondary move keeps its tooltip and accessible name, the label hides.
+@container laundry-list (min-width: 480px) and (max-width: 639px) {
+  .laundry-row__action--secondary.MuiButton-root {
+    min-width: 36px;
+    padding: 0 9px;
+
+    .MuiButton-startIcon {
+      margin: 0;
+    }
+
+    .laundry-row__action-label {
+      @include visually-hidden;
+    }
+  }
+}
+
+// Narrow lists: the moves drop to a second line under the text. Rows with one short move
+// ("Done") keep it inline until the list gets really narrow.
+@mixin laundry-row-stacked {
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    'check main'
+    'actions actions';
+  row-gap: 0;
+  padding-bottom: $space-1;
+
+  .laundry-row__actions {
+    // 40px checkbox + 4px gap + 2px main padding + 40px photo + 12px gap: line up with the text.
+    padding-left: 98px;
+    margin-top: -6px;
+  }
+
+  .laundry-row__action.MuiButton-root {
+    min-height: 32px;
+  }
+
+  // Full width for the text here, so long names wrap to a second line instead of cutting off.
+  .laundry-row__name {
+    @include line-clamp(2);
+    white-space: normal;
+  }
+}
+
+@container laundry-list (max-width: 479px) {
+  .laundry-row:not(.laundry-row--single) {
+    @include laundry-row-stacked;
+  }
+}
+
+@container laundry-list (max-width: 359px) {
+  .laundry-row--single {
+    @include laundry-row-stacked;
+  }
+}
+
+// Touch screens get full 44px targets.
+@media (pointer: coarse) {
+  .laundry-row__check.MuiCheckbox-root {
+    width: 44px;
+    height: 44px;
+  }
+
+  .laundry-row .laundry-row__action.MuiButton-root {
+    min-height: 44px;
+  }
+}

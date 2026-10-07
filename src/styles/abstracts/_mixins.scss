@@ -1,0 +1,182 @@
+// Mixins and functions. No CSS output at the top level: this file is injected everywhere.
+@use 'sass:map';
+@use 'tokens' as *;
+
+/// Breakpoint value by name (xs, sm, md, lg, xl).
+@function bp($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Unknown breakpoint `#{$name}`. Use one of: #{map.keys($breakpoints)}.';
+  }
+  @return map.get($breakpoints, $name);
+}
+
+/// Min-width query, same as theme.breakpoints.up($bp).
+@mixin up($bp) {
+  $value: bp($bp);
+  @if $value == 0 {
+    @content;
+  } @else {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+/// Max-width query, same as theme.breakpoints.down($bp) (exclusive of $bp).
+@mixin down($bp) {
+  @media (max-width: bp($bp) - 0.05px) {
+    @content;
+  }
+}
+
+/// From $a (inclusive) up to $b (exclusive), same as theme.breakpoints.between($a, $b).
+@mixin between($a, $b) {
+  @media (min-width: bp($a)) and (max-width: bp($b) - 0.05px) {
+    @content;
+  }
+}
+
+/// Keyboard focus ring: 2px primary outline, 2px offset (matches theme.focusVisible).
+@mixin focus-ring($offset: 2px, $radius: null) {
+  &:focus-visible {
+    outline: 2px solid $c-primary;
+    outline-offset: $offset;
+    @if $radius {
+      border-radius: $radius;
+    }
+  }
+}
+
+/// Hide visually, keep available to assistive technology.
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/// Wrap animations and transitions that should only run without reduced-motion preference.
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+/// Hover styles only on devices that really hover (avoids sticky hover on touch).
+@mixin hover-capable {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+/// Press feedback for tappable surfaces (buttons, cards, tiles).
+@mixin pressable($scale: 0.98) {
+  transition: transform $duration-fast $ease-standard;
+
+  &:active {
+    transform: scale($scale);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+/// Tabular numbers for stats, counters and anything that changes in place.
+@mixin tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/// Single-line ellipsis. Parent flex items also need min-width: 0.
+@mixin truncate {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Multi-line ellipsis.
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+}
+
+/// Light "photo well" for white-background garment shots. Stays light in dark mode on purpose.
+@mixin photo-well($radius: $radius-well, $padding: 10%) {
+  position: relative;
+  overflow: hidden;
+  background-color: $c-photo-well;
+  border-radius: $radius;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: $padding;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+}
+
+/// Flat outlined card surface.
+@mixin card-surface($padding: $space-3, $radius: $radius-surface) {
+  background-color: $c-paper;
+  border: 1px solid $c-divider;
+  border-radius: $radius;
+  @if $padding != null {
+    padding: $padding;
+  }
+}
+
+/// Raised overlay surface (menus, popovers, bulk action bar).
+@mixin overlay-surface($radius: $radius-surface) {
+  background-color: $c-raised;
+  border-radius: $radius;
+  box-shadow: $shadow-overlay;
+}
+
+/// Horizontal scroller without a visible scrollbar (chip rows, segmented controls).
+@mixin scrollbar-hidden {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/// Responsive page gutters: 16 / 24 / 32px.
+@mixin page-gutters($property: padding-inline) {
+  #{$property}: $gutter-xs;
+
+  @include up(md) {
+    #{$property}: $gutter-md;
+  }
+
+  @include up(lg) {
+    #{$property}: $gutter-lg;
+  }
+}
+
+/// Styles for one colour scheme only. Prefer the colour variables, which switch on their own;
+/// use this only when the two schemes need different structure.
+@mixin dark-scheme {
+  [data-dark] & {
+    @content;
+  }
+}
+
+@mixin light-scheme {
+  [data-light] & {
+    @content;
+  }
+}

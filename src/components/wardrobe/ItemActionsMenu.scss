@@ -1,0 +1,13 @@
+.item-actions-menu {
+  .MuiMenu-paper {
+    min-width: 220px;
+  }
+
+  &__danger.MuiMenuItem-root {
+    color: $c-error;
+
+    .MuiListItemIcon-root {
+      color: inherit;
+    }
+  }
+}

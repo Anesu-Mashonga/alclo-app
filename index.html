@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Alclo plans your outfits around the weather, your day and what is actually clean." />
+    <meta name="theme-color" content="#F4F4F5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)" />
+    <title>Alclo</title>
+    <!--
+      Colour scheme before first paint. Mirrors MUI's InitColorSchemeScript for
+      colorSchemeSelector 'data': it sets data-light or data-dark on <html> from the mode
+      stored under 'alclo-color-mode' ('light' | 'dark' | 'system', default 'system').
+    -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem('alclo-color-mode') || 'system';
+          var scheme = mode;
+          if (mode !== 'light' && mode !== 'dark') {
+            scheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          var root = document.documentElement;
+          root.removeAttribute(scheme === 'dark' ? 'data-light' : 'data-dark');
+          root.setAttribute('data-' + scheme, '');
+        } catch (error) {
+          document.documentElement.setAttribute('data-light', '');
+        }
+      })();
+    </script>
+    <!--
+      Cascade layer order: our element defaults (base) sit below MUI (mui), and unlayered
+      component SCSS sits above both. MUI's global styles are inserted just before the
+      emotion insertion point below, so this declaration must stay above it.
+    -->
+    <style>
+      @layer base, mui;
+    </style>
+    <meta name="emotion-insertion-point" content="" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,349 @@
+// Planner day. Three shapes:
+// - phones: stacked card (header row, content, actions)
+// - sm to lg: one row per day (date, preview, text, actions)
+// - lg and up: a column in the 7-day week grid
+.planner-day {
+  @include card-surface(null);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'header'
+    'content'
+    'actions';
+  gap: 12px;
+  min-width: 0;
+  padding: 12px;
+
+  &--today {
+    border-color: $c-primary;
+    box-shadow: inset 0 0 0 1px $c-primary;
+  }
+
+  &--past {
+    background-color: transparent;
+
+    .planner-day__daynum,
+    .planner-day__name {
+      color: $c-text-secondary;
+    }
+
+    .planner-day__preview {
+      opacity: 0.72;
+    }
+  }
+
+  &__header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+    min-width: 0;
+  }
+
+  &__date {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  &__weekday {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $c-text-secondary;
+  }
+
+  &__daynum {
+    @include tabular;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: $c-text;
+  }
+
+  &__today {
+    align-self: center;
+    padding: 2px 8px;
+    border-radius: $radius-pill;
+    background-color: $c-accent-soft;
+    color: $c-on-accent-soft;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  &__forecast {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+    white-space: nowrap;
+  }
+
+  &__forecast-icon.MuiSvgIcon-root {
+    font-size: 18px;
+    color: $c-info;
+  }
+
+  &__temps {
+    @include tabular;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__low {
+    font-weight: 500;
+    color: $c-text-secondary;
+  }
+
+  &__content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  &__preview {
+    width: 100%;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__status-icon.MuiSvgIcon-root {
+    font-size: 14px;
+  }
+
+  &__name {
+    @include line-clamp(2);
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__note {
+    @include line-clamp(2);
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__flag {
+    margin: 2px 0 0;
+    padding: 4px 8px;
+    border-radius: $radius-sm;
+    background-color: $c-warning-soft;
+    color: $c-on-warning-soft;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  &__empty {
+    grid-area: content;
+    margin: 0;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__plan.MuiButton-root {
+    grid-area: content;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+    border: 1px dashed $c-border-strong;
+    color: $c-text-secondary;
+
+    @include hover-capable {
+      &:hover {
+        border-color: $c-text-secondary;
+        color: $c-text;
+      }
+    }
+  }
+
+  &__actions {
+    grid-area: actions;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $space-1;
+  }
+
+  &__change.MuiButton-root {
+    flex: 1 1 auto;
+  }
+
+  &__wear.MuiButton-root {
+    flex: 1 1 auto;
+  }
+
+  &__clear.MuiIconButton-root {
+    width: 32px;
+    height: 32px;
+    color: $c-text-secondary;
+    border: 1px solid $c-border-strong;
+    border-radius: $radius-control;
+
+    @include down(md) {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  // Phones: bigger targets.
+  @include down(sm) {
+    &__actions .MuiButton-root {
+      min-height: 44px;
+    }
+  }
+
+  // Tablet and small laptop: one row per day.
+  @include between(sm, lg) {
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    grid-template-areas: 'header content actions';
+    align-items: center;
+    gap: $space-2;
+    padding: 12px $space-2;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    &__date {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    &__today {
+      margin-top: 2px;
+    }
+
+    &__content {
+      grid-template-columns: 72px minmax(0, 1fr);
+      align-items: center;
+    }
+
+    &__plan.MuiButton-root {
+      justify-self: start;
+      width: auto;
+      padding-inline: $space-2;
+    }
+
+    &__actions {
+      flex-wrap: nowrap;
+    }
+
+    &__clear.MuiIconButton-root {
+      width: 40px;
+      height: 40px;
+    }
+
+    &__actions .MuiButton-root {
+      min-height: 40px;
+    }
+  }
+
+  // Desktop: a column in the week grid.
+  @include up(lg) {
+    grid-template-rows: auto 1fr auto;
+    align-content: start;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    &__content {
+      grid-template-columns: minmax(0, 1fr);
+      align-content: start;
+    }
+
+    &__actions {
+      flex-wrap: nowrap;
+      gap: 4px;
+    }
+
+    &__change.MuiButton-root {
+      min-width: 0;
+      padding-inline: 8px;
+
+      .MuiButton-startIcon {
+        display: none;
+      }
+    }
+
+    &__plan.MuiButton-root {
+      flex-direction: column;
+      gap: 4px;
+      height: 100%;
+      min-height: 160px;
+
+      .MuiButton-startIcon {
+        margin: 0;
+      }
+    }
+
+    &__wear.MuiButton-root {
+      flex-basis: 100%;
+    }
+  }
+
+  // Skeleton.
+  &--skeleton .MuiSkeleton-root {
+    border-radius: $radius-sm;
+  }
+
+  &__sk-date.MuiSkeleton-root {
+    width: 64px;
+    height: 24px;
+  }
+
+  &__sk-forecast.MuiSkeleton-root {
+    width: 56px;
+    height: 18px;
+  }
+
+  &__sk-preview.MuiSkeleton-root {
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__sk-line.MuiSkeleton-root {
+    width: 100%;
+    height: 14px;
+
+    &--short {
+      width: 60%;
+    }
+  }
+}

@@ -1,0 +1,121 @@
+.settings-nav {
+  // Mobile: a sticky strip of pills that scrolls sideways, flush with the screen edges.
+  position: sticky;
+  top: var(--alclo-topbar-height, 56px);
+  z-index: $z-sticky;
+  margin-inline: -$gutter-xs;
+  padding: $space-1 $gutter-xs;
+  background-color: $c-bg;
+  border-bottom: 1px solid $c-divider;
+
+  @include up(md) {
+    top: calc(var(--alclo-topbar-height, 64px) + #{$space-3});
+    margin-inline: 0;
+    padding: 0;
+    background-color: transparent;
+    border-bottom: 0;
+  }
+
+  &__list {
+    display: flex;
+    gap: $space-1;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    list-style: none;
+    @include scrollbar-hidden;
+
+    @include up(md) {
+      flex-direction: column;
+      gap: 2px;
+      overflow: visible;
+    }
+  }
+
+  &__entry {
+    flex-shrink: 0;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 0 14px 0 12px;
+    color: $c-text-secondary;
+    text-decoration: none;
+    border: 1px solid $c-divider;
+    border-radius: $radius-pill;
+    background-color: $c-paper;
+    transition:
+      background-color $duration-fast $ease-standard,
+      color $duration-fast $ease-standard,
+      border-color $duration-fast $ease-standard;
+    @include focus-ring(2px);
+    @include pressable(0.98);
+
+    @include up(md) {
+      align-items: flex-start;
+      gap: 12px;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: $radius-control;
+      background-color: transparent;
+    }
+
+    @include hover-capable {
+      &:hover {
+        color: $c-text;
+        background-color: $c-hover;
+      }
+    }
+
+    &--active,
+    &--active:hover {
+      color: $c-on-accent-soft;
+      border-color: transparent;
+      background-color: $c-accent-soft;
+
+      .settings-nav__description {
+        color: inherit;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 20px;
+
+    @include up(md) {
+      margin-top: 1px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__label {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  &__description {
+    display: none;
+    margin-top: 1px;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: $c-text-secondary;
+
+    @include up(lg) {
+      display: block;
+    }
+  }
+}

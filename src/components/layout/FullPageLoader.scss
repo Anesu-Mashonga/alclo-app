@@ -1,0 +1,35 @@
+@keyframes full-page-loader-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.full-page-loader {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: $space-3;
+  background-color: $c-bg;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-3;
+    width: 160px;
+
+    @include motion-safe {
+      animation: full-page-loader-in $duration-slow $ease-standard 180ms both;
+    }
+  }
+
+  &__bar.MuiLinearProgress-root {
+    width: 100%;
+    height: 4px;
+  }
+}

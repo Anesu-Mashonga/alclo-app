@@ -1,0 +1,93 @@
+.choice-cards {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+
+  @include up(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 8px 14px $space-2;
+    background-color: $c-paper;
+    border: 1px solid $c-divider;
+    border-radius: $radius-well;
+    cursor: pointer;
+    transition:
+      border-color $duration-fast $ease-standard,
+      box-shadow $duration-fast $ease-standard;
+
+    @include hover-capable {
+      &:hover {
+        border-color: $c-border-strong;
+      }
+    }
+
+    &:has(input:focus-visible) {
+      outline: 2px solid $c-primary;
+      outline-offset: 2px;
+    }
+
+    &--checked,
+    &--checked:hover {
+      border-color: transparent;
+      box-shadow: 0 0 0 2px $c-primary;
+    }
+
+    &--disabled,
+    &--disabled:hover {
+      cursor: not-allowed;
+      background-color: $c-bg;
+      border-color: $c-divider;
+
+      .choice-cards__title,
+      .choice-cards__icon {
+        color: $c-text-disabled;
+      }
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+  }
+
+  &__icon {
+    display: inline-flex;
+    font-size: 20px;
+    color: $c-text-secondary;
+  }
+
+  &__card--checked &__icon {
+    color: $c-primary;
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__radio.MuiRadio-root {
+    flex-shrink: 0;
+    margin-block: -4px;
+  }
+
+  // The focus ring sits on the whole card instead.
+  &__radio.Mui-focusVisible {
+    outline: none;
+  }
+
+  &__description {
+    padding-right: $space-1;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: $c-text-secondary;
+  }
+}

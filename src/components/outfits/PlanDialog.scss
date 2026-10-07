@@ -1,0 +1,282 @@
+.plan-dialog {
+  &__form {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  &__subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__subtitle-icon.MuiSvgIcon-root {
+    font-size: 18px;
+    color: $c-info;
+  }
+
+  &__content.MuiDialogContent-root {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: $space-1;
+  }
+
+  &__mode.MuiToggleButtonGroup-root {
+    flex-shrink: 0;
+  }
+
+  // Saved outfit options (native radios, so arrow keys work).
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    max-height: 340px;
+    margin: -4px;
+    padding: 4px;
+    overflow-y: auto;
+
+    @include down(sm) {
+      max-height: none;
+    }
+  }
+
+  &__option {
+    position: relative;
+    display: grid;
+    flex-shrink: 0;
+    grid-template-columns: 172px minmax(0, 1fr) 20px;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    padding: 10px 12px;
+    border: 1px solid $c-divider;
+    border-radius: $radius-control;
+    background-color: $c-paper;
+    cursor: pointer;
+    transition: border-color $duration-fast $ease-standard, background-color $duration-fast $ease-standard;
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-hover;
+      }
+    }
+
+    &:has(.plan-dialog__radio:focus-visible) {
+      outline: 2px solid $c-primary;
+      outline-offset: 2px;
+    }
+
+    &--checked {
+      border-color: $c-primary;
+      box-shadow: inset 0 0 0 1px $c-primary;
+    }
+
+    &--skeleton {
+      grid-template-columns: auto minmax(0, 1fr);
+      cursor: default;
+    }
+
+    // Phones: photos on top, full-width text below, so names are not cut short.
+    @include down(sm) {
+      grid-template-columns: minmax(0, 1fr) 20px;
+      row-gap: $space-1;
+
+      .plan-dialog__option-strip {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .plan-dialog__option-text {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      .plan-dialog__check {
+        grid-column: 2;
+        grid-row: 1;
+      }
+    }
+  }
+
+  // Transparent native radio stretched over the whole option: real hit area, native keyboard behaviour.
+  &__radio {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__option-strip.outfit-preview {
+    flex-shrink: 0;
+  }
+
+  &__option-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__option-name {
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__option-meta {
+    @include truncate;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__option-flag {
+    @include truncate;
+    font-size: 0.8125rem;
+    color: $c-on-warning-soft;
+  }
+
+  &__check {
+    display: grid;
+    place-items: center;
+    color: $c-primary;
+  }
+
+  &__option-sk-strip.MuiSkeleton-root {
+    width: 172px;
+    height: 40px;
+  }
+
+  &__option-sk-line.MuiSkeleton-root {
+    width: 70%;
+    height: 16px;
+  }
+
+  // Generated idea.
+  &__idea {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+
+  &__occasion {
+    align-self: flex-start;
+  }
+
+  &__idea-card {
+    display: grid;
+    grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    padding: $space-2;
+    border: 1px solid $c-divider;
+    border-radius: $radius-surface;
+    background-color: $c-paper;
+    transition: opacity $duration-base $ease-standard;
+
+    &--busy {
+      opacity: 0.6;
+    }
+
+    @include down(sm) {
+      grid-template-columns: minmax(0, 120px) minmax(0, 1fr);
+      gap: $space-2;
+      padding: 12px;
+    }
+  }
+
+  &__idea-preview {
+    min-width: 0;
+  }
+
+  &__idea-text {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    min-width: 0;
+  }
+
+  &__idea-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__reasons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: $space-1;
+      font-size: 0.875rem;
+      line-height: 1.45;
+      color: $c-text-secondary;
+    }
+  }
+
+  &__reason-icon.MuiSvgIcon-root {
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 16px;
+  }
+
+  &__shuffle.MuiButton-root {
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: $c-text-secondary;
+  }
+
+  &__idea-sk-preview.MuiSkeleton-root {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: $radius-well;
+  }
+
+  &__idea-sk-line.MuiSkeleton-root {
+    width: 100%;
+    height: 16px;
+
+    &--short {
+      width: 60%;
+    }
+  }
+
+  &__actions.MuiDialogActions-root {
+    border-top: 1px solid $c-divider;
+    padding-top: $space-2;
+
+    @include down(sm) {
+      position: sticky;
+      bottom: 0;
+      margin-top: auto;
+      background-color: $c-raised;
+      padding-bottom: calc(16px + #{$safe-bottom});
+
+      .MuiButton-root {
+        flex: 1 1 0;
+        min-height: 44px;
+      }
+    }
+  }
+}

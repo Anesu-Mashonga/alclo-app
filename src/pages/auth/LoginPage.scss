@@ -1,0 +1,12 @@
+.login-page {
+  &__forgot.MuiLink-root {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.9375rem;
+  }
+
+  &__demo {
+    margin-top: $space-4;
+  }
+}

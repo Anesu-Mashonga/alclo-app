@@ -1,0 +1,167 @@
+.item-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  padding: $space-1 $space-1 12px;
+  background-color: $c-paper;
+  border: 1px solid $c-divider;
+  border-radius: $radius-surface;
+  transition:
+    border-color $duration-fast $ease-standard,
+    background-color $duration-fast $ease-standard,
+    transform $duration-fast $ease-standard;
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:active {
+      transform: none;
+    }
+  }
+
+  @include hover-capable {
+    &:hover {
+      border-color: $c-border-strong;
+    }
+
+    &:hover .item-card__thumb img {
+      transform: scale(1.03);
+    }
+  }
+
+  // The stretched button carries the focus; draw the ring around the whole card.
+  &:has(.item-card__main:focus-visible) {
+    outline: 2px solid $c-primary;
+    outline-offset: 2px;
+  }
+
+  &--selecting {
+    user-select: none;
+  }
+
+  &--selected {
+    border-color: $c-primary;
+    background-color: $c-accent-soft;
+
+    @include hover-capable {
+      &:hover {
+        border-color: $c-primary;
+      }
+    }
+  }
+
+  &__media {
+    position: relative;
+  }
+
+  &__thumb img {
+    transition: transform $duration-slow $ease-standard;
+  }
+
+  &__status {
+    position: absolute;
+    bottom: $space-1;
+    left: $space-1;
+    pointer-events: none;
+  }
+
+  &__favorite.MuiIconButton-root {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 2;
+  }
+
+  &__check {
+    position: absolute;
+    top: $space-1;
+    left: $space-1;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 2px solid #52525b;
+    background-color: rgb(255 255 255 / 0.9);
+    color: #fff;
+    font-size: 18px;
+    pointer-events: none;
+    transition:
+      background-color $duration-fast $ease-standard,
+      border-color $duration-fast $ease-standard;
+
+    &--on {
+      border-color: $c-primary;
+      background-color: $c-primary;
+      color: $c-on-primary;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    padding: 12px 4px 0;
+  }
+
+  &__main {
+    all: unset;
+    display: block;
+    min-width: 0;
+    cursor: pointer;
+
+    // Stretch the hit area over the whole card; the favourite button sits above it.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &__name {
+    display: block;
+    @include truncate;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-1;
+    min-width: 0;
+  }
+
+  &__type {
+    @include truncate;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+  }
+
+  &__colors {
+    flex-shrink: 0;
+  }
+
+  &__wears {
+    margin: 2px 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: $c-text-secondary;
+    @include tabular;
+  }
+}

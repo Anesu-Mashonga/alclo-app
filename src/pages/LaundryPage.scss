@@ -1,0 +1,60 @@
+.laundry-page {
+  // Hamper is the working list, so it gets the wide column; the wash and the clean pile stack
+  // beside it in flow order (hamper, then wash, then clean).
+  &__board {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    align-items: start;
+    gap: $space-2;
+
+    @include up(lg) {
+      gap: $space-3;
+    }
+  }
+
+  &__side {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    min-width: 0;
+
+    @include up(lg) {
+      gap: $space-3;
+    }
+  }
+
+  &__tabs.MuiTabs-root {
+    margin-bottom: 12px;
+    border-bottom: 1px solid $c-divider;
+  }
+
+  &__tab-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  &__tab-count {
+    @include tabular;
+    display: inline-grid;
+    place-items: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: $radius-pill;
+    background-color: $c-sunken;
+    color: $c-text-secondary;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .Mui-selected &__tab-count {
+    background-color: $c-ink;
+    color: $c-on-ink;
+  }
+
+  &__subtitle-skeleton {
+    display: inline-block;
+  }
+}

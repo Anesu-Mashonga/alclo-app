@@ -1,0 +1,126 @@
+// Ink surface: dark on light pages, light on dark pages, so it reads as an overlay in both.
+.bulk-action-bar {
+  position: fixed;
+  bottom: calc(var(--alclo-bottom-inset, 0px) + #{$space-2});
+  left: 50%;
+  z-index: $z-bulk-bar;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  width: max-content;
+  max-width: calc(100vw - #{2 * $gutter-xs});
+  translate: -50% 0;
+  padding: $space-1 $space-1 $space-1 $space-2;
+  border-radius: $radius-surface;
+  background-color: $c-ink;
+  color: $c-on-ink;
+  box-shadow: $shadow-overlay;
+
+  // Centre over the content column, not the whole window (the sidebar or rail sits on the left).
+  .app-shell--full & {
+    left: calc(50% + #{$sidebar-width * 0.5});
+  }
+
+  .app-shell--rail & {
+    left: calc(50% + #{$rail-width * 0.5});
+  }
+
+  @include down(sm) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: calc(100vw - #{2 * $gutter-xs});
+    padding: $space-1;
+  }
+
+  &__summary {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+
+    @include down(sm) {
+      justify-content: space-between;
+      padding-left: $space-1;
+    }
+  }
+
+  &__count {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    @include tabular;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    @include down(sm) {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    }
+  }
+
+  .MuiButton-root {
+    min-height: 40px;
+    color: inherit;
+
+    @include hover-capable {
+      &:hover {
+        background-color: color-mix(in srgb, currentColor 10%, transparent);
+      }
+    }
+
+    &.Mui-disabled {
+      color: inherit;
+      opacity: 0.45;
+    }
+  }
+
+  &__select-all.MuiButton-root {
+    min-height: 32px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &__action.MuiButton-root {
+    @include down(sm) {
+      flex-direction: column;
+      gap: 2px;
+      min-height: 56px;
+      padding: 4px;
+      font-size: 0.75rem;
+      white-space: normal;
+      line-height: 1.2;
+
+      .MuiButton-startIcon {
+        margin: 0;
+      }
+    }
+  }
+
+  &__action--danger.MuiButton-root {
+    color: color-mix(in srgb, var(--mui-palette-error-main) 55%, currentColor);
+  }
+
+  &__divider {
+    width: 1px;
+    height: 24px;
+    margin-inline: 4px;
+    background-color: currentColor;
+    opacity: 0.2;
+
+    @include down(sm) {
+      display: none;
+    }
+  }
+
+  &__cancel.MuiButton-root {
+    @include down(sm) {
+      min-height: 56px;
+      font-size: 0.8125rem;
+    }
+  }
+}

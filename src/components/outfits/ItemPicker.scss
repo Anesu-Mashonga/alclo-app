@@ -1,0 +1,142 @@
+.item-picker {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  min-width: 0;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+  }
+
+  &__back.MuiButton-root {
+    margin-left: -12px;
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: $c-text;
+  }
+
+  &__count {
+    @include tabular;
+    margin: 0;
+    font-size: 0.875rem;
+    color: $c-text-secondary;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include down(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    > li {
+      display: flex;
+      min-width: 0;
+    }
+  }
+
+  &__tile {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 6px;
+    border: 1px solid transparent;
+    border-radius: $radius-control;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color $duration-fast $ease-standard, border-color $duration-fast $ease-standard;
+    @include focus-ring;
+    @include pressable(0.98);
+
+    @include hover-capable {
+      &:hover {
+        background-color: $c-hover;
+      }
+    }
+
+    &--selected {
+      border-color: $c-primary;
+      background-color: $c-accent-soft;
+
+      @include hover-capable {
+        &:hover {
+          background-color: $c-accent-soft;
+        }
+      }
+    }
+
+    &[aria-disabled='true'] {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__photo {
+    position: relative;
+    display: block;
+  }
+
+  &__check {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: $c-primary;
+    color: $c-on-primary;
+
+    .MuiSvgIcon-root {
+      font-size: 18px;
+    }
+  }
+
+  &__name {
+    @include line-clamp(2);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: $c-text;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    min-width: 0;
+    margin-top: auto;
+  }
+
+  &__type {
+    @include truncate;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+
+  &__hint {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: $c-text-secondary;
+  }
+}
